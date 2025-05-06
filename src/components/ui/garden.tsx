@@ -5,6 +5,7 @@ export function Garden() {
   return (
     <section className="relative h-svh w-full overflow-hidden">
       <Canvas
+        camera={{ position: [4, 4, 6] }}
         gl={async (props) => {
           // node materials need three's node renderer; it picks webgpu when
           // the browser has it and quietly falls back to webgl 2 when not
@@ -19,7 +20,12 @@ export function Garden() {
 
           return renderer
         }}
-      />
+      >
+        <mesh>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshNormalMaterial />
+        </mesh>
+      </Canvas>
     </section>
   )
 }
