@@ -1,3 +1,10 @@
+import { Header } from './components/ui/header'
+
 export function App() {
-  return <h1>Portfolio</h1>
+  return (
+    <>
+      <Header />
+      <main className="flex-1" />
+    </>
+  )
 }
