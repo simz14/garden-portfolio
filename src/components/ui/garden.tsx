@@ -1,5 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
+import { OrbitControls } from '@react-three/drei'
 
 export function Garden() {
   return (
@@ -21,6 +22,8 @@ export function Garden() {
           return renderer
         }}
       >
+        <OrbitControls />
+
         <hemisphereLight args={['#cfe3f2', '#3f6236', 0.95]} />
         <directionalLight color="#ffeec2" intensity={2.6} position={[18, 26, 10]} />
 
