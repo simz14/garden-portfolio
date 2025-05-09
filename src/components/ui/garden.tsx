@@ -6,6 +6,7 @@ export function Garden() {
   return (
     <section className="relative h-svh w-full overflow-hidden">
       <Canvas
+        shadows="percentage"
         camera={{ position: [4, 4, 6] }}
         gl={async (props) => {
           // node materials need three's node renderer; it picks webgpu when
