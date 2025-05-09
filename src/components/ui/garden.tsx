@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
-import { OrbitControls } from '@react-three/drei'
+import { Scene } from '../3d/scene'
 
 export function Garden() {
   return (
@@ -22,15 +22,7 @@ export function Garden() {
           return renderer
         }}
       >
-        <OrbitControls />
-
-        <hemisphereLight args={['#cfe3f2', '#3f6236', 0.95]} />
-        <directionalLight color="#ffeec2" intensity={2.6} position={[18, 26, 10]} />
-
-        <mesh>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshLambertNodeMaterial color="#8a5c33" />
-        </mesh>
+        <Scene />
       </Canvas>
     </section>
   )
