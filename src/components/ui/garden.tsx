@@ -1,5 +1,6 @@
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
+import { Physics } from '@react-three/rapier'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
@@ -23,7 +24,9 @@ export function Garden() {
           return renderer
         }}
       >
-        <Scene />
+        <Physics>
+          <Scene />
+        </Physics>
       </Canvas>
     </section>
   )
