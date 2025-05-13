@@ -1,4 +1,5 @@
 import { OrbitControls } from '@react-three/drei'
+import { RigidBody } from '@react-three/rapier'
 import { lightConfig, shadowConfig } from '../../config/scene'
 
 export function Scene() {
@@ -35,10 +36,12 @@ export function Scene() {
         <meshLambertNodeMaterial color="#568f42" />
       </mesh>
 
-      <mesh position-y={0.5} castShadow>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshLambertNodeMaterial color="#8a5c33" />
-      </mesh>
+      <RigidBody position={[0, 6, 0]}>
+        <mesh castShadow>
+          <boxGeometry args={[1, 1, 1]} />
+          <meshLambertNodeMaterial color="#8a5c33" />
+        </mesh>
+      </RigidBody>
     </>
   )
 }
