@@ -1,21 +1,31 @@
 import { OrbitControls } from '@react-three/drei'
+import { lightConfig, shadowConfig } from '../../config/scene'
 
 export function Scene() {
   return (
     <>
       <OrbitControls />
 
-      <hemisphereLight args={['#cfe3f2', '#3f6236', 0.95]} />
+      <hemisphereLight
+        args={[
+          lightConfig.hemisphere.skyColor,
+          lightConfig.hemisphere.groundColor,
+          lightConfig.hemisphere.intensity,
+        ]}
+      />
+
       <directionalLight
-        color="#ffeec2"
-        intensity={2.6}
-        position={[18, 26, 10]}
+        color={lightConfig.directional.color}
+        intensity={lightConfig.directional.intensity}
+        position={lightConfig.directional.position}
         castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-camera-left={-22}
-        shadow-camera-right={22}
-        shadow-camera-top={22}
-        shadow-camera-bottom={-22}
+        shadow-mapSize={[shadowConfig.highMapSize, shadowConfig.highMapSize]}
+        shadow-camera-left={-shadowConfig.area}
+        shadow-camera-right={shadowConfig.area}
+        shadow-camera-top={shadowConfig.area}
+        shadow-camera-bottom={-shadowConfig.area}
+        shadow-camera-near={shadowConfig.near}
+        shadow-camera-far={shadowConfig.far}
       />
 
       <mesh rotation-x={-Math.PI / 2} receiveShadow>

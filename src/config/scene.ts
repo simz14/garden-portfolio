@@ -1,0 +1,20 @@
+export const lightConfig = {
+  hemisphere: {
+    skyColor: '#cfe3f2',
+    groundColor: '#3f6236',
+    intensity: 0.95,
+  },
+  directional: {
+    color: '#ffeec2',
+    intensity: 2.6,
+    position: [18, 26, 10] as [number, number, number],
+  },
+}
+
+export const shadowConfig = {
+  highMapSize: 2048,
+  lowMapSize: 1024,
+  area: 22,
+  near: 1,
+  far: 70,
+}
