@@ -17,4 +17,6 @@ export const shadowConfig = {
   area: 22,
   near: 1,
   far: 70,
+  bias: -0.0012,
+  normalBias: 0.02,
 }

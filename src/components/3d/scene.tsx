@@ -26,6 +26,8 @@ export function Scene() {
         shadow-camera-bottom={-shadowConfig.area}
         shadow-camera-near={shadowConfig.near}
         shadow-camera-far={shadowConfig.far}
+        shadow-bias={shadowConfig.bias}
+        shadow-normalBias={shadowConfig.normalBias}
       />
 
       <mesh rotation-x={-Math.PI / 2} receiveShadow>
