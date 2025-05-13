@@ -1,5 +1,5 @@
 import { OrbitControls } from '@react-three/drei'
-import { RigidBody } from '@react-three/rapier'
+import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { lightConfig, shadowConfig } from '../../config/scene'
 
 export function Scene() {
@@ -35,6 +35,10 @@ export function Scene() {
         <planeGeometry args={[24, 24]} />
         <meshLambertNodeMaterial color="#568f42" />
       </mesh>
+
+      <RigidBody type="fixed" colliders={false}>
+        <CuboidCollider args={[12, 0.25, 12]} position={[0, 0.25, 0]} />
+      </RigidBody>
 
       <RigidBody position={[0, 6, 0]}>
         <mesh castShadow>
