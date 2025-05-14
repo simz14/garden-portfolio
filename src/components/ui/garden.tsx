@@ -1,6 +1,7 @@
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
 import { Physics } from '@react-three/rapier'
+import { physicsConfig } from '../../config/scene'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
@@ -24,7 +25,11 @@ export function Garden() {
           return renderer
         }}
       >
-        <Physics>
+        <Physics
+          gravity={physicsConfig.gravity}
+          timeStep={physicsConfig.timeStep}
+          debug={physicsConfig.isDebugVisible}
+        >
           <Scene />
         </Physics>
       </Canvas>

@@ -20,3 +20,9 @@ export const shadowConfig = {
   bias: -0.0012,
   normalBias: 0.02,
 }
+
+export const physicsConfig = {
+  gravity: [0, -9.81, 0] as [number, number, number],
+  timeStep: 1 / 60,
+  isDebugVisible: false,
+}
