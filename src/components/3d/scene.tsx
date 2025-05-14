@@ -37,7 +37,8 @@ export function Scene() {
       </mesh>
 
       <RigidBody type="fixed" colliders={false}>
-        <CuboidCollider args={[12, 0.25, 12]} position={[0, 0.25, 0]} />
+        {/* sunk so the top face lands on y=0 */}
+        <CuboidCollider args={[12, 0.25, 12]} position={[0, -0.25, 0]} />
       </RigidBody>
 
       <RigidBody position={[0, 6, 0]}>
