@@ -2,9 +2,12 @@ import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
 import { Physics } from '@react-three/rapier'
 import { physicsConfig } from '../../config/scene'
+import { useDebugState } from '../../hooks/debug'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
+  const debug = useDebugState()
+
   return (
     <section className="relative h-svh w-full overflow-hidden">
       <Canvas
@@ -28,7 +31,7 @@ export function Garden() {
         <Physics
           gravity={physicsConfig.gravity}
           timeStep={physicsConfig.timeStep}
-          debug={physicsConfig.isDebugVisible}
+          debug={debug.isPhysicsVisible}
         >
           <Scene />
         </Physics>
