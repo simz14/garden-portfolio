@@ -1,13 +1,22 @@
+import { useRef } from 'react'
+import type { DirectionalLight, HemisphereLight } from 'three'
 import { OrbitControls } from '@react-three/drei'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { lightConfig, shadowConfig } from '../../config/scene'
+import { useSceneControls } from '../../hooks/scene-controls'
 
 export function Scene() {
+  const sunRef = useRef<DirectionalLight>(null)
+  const skyRef = useRef<HemisphereLight>(null)
+
+  useSceneControls(sunRef, skyRef)
+
   return (
     <>
       <OrbitControls />
 
       <hemisphereLight
+        ref={skyRef}
         args={[
           lightConfig.hemisphere.skyColor,
           lightConfig.hemisphere.groundColor,
@@ -16,6 +25,7 @@ export function Scene() {
       />
 
       <directionalLight
+        ref={sunRef}
         color={lightConfig.directional.color}
         intensity={lightConfig.directional.intensity}
         position={lightConfig.directional.position}
