@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
-import { OrbitControls, OrthographicCamera } from '@react-three/drei'
+import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { cameraConfig, lightConfig, shadowConfig } from '../../config/scene'
 import { useSceneControls } from '../../hooks/scene-controls'
@@ -15,7 +15,7 @@ export function Scene() {
     <>
       <OrthographicCamera makeDefault near={cameraConfig.near} far={cameraConfig.far} />
 
-      <OrbitControls />
+      <CameraControls makeDefault truckSpeed={0} dollySpeed={0} />
 
       <hemisphereLight
         ref={skyRef}
