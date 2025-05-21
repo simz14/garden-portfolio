@@ -1,3 +1,12 @@
+export const cameraConfig = {
+  near: 0.1,
+  far: 320,
+  target: [0, 1.2, 0] as [number, number, number],
+  distance: 34,
+  polarAngle: Math.PI / 3,
+  azimuth: Math.PI / 4,
+}
+
 export const lightConfig = {
   hemisphere: {
     skyColor: '#cfe3f2',
