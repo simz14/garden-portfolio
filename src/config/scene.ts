@@ -30,6 +30,12 @@ export const shadowConfig = {
   normalBias: 0.02,
 }
 
+export const fogConfig = {
+  fogColor: '#eaf0cd',
+  fogNear: 46,
+  fogFar: 82,
+}
+
 export const physicsConfig = {
   gravity: [0, -9.81, 0] as [number, number, number],
   timeStep: 1 / 60,
