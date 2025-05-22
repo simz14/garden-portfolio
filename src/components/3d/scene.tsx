@@ -3,12 +3,14 @@ import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { cameraConfig, lightConfig, shadowConfig } from '../../config/scene'
+import { useCameraHome } from '../../hooks/camera'
 import { useSceneControls } from '../../hooks/scene-controls'
 
 export function Scene() {
   const sunRef = useRef<DirectionalLight>(null)
   const skyRef = useRef<HemisphereLight>(null)
 
+  useCameraHome()
   useSceneControls(sunRef, skyRef)
 
   return (
