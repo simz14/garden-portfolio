@@ -1,13 +1,11 @@
 import { useRef } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
-import { CuboidCollider, RigidBody } from '@react-three/rapier'
-import { gardenConfig, paletteConfig } from '../../config/garden'
+import { RigidBody } from '@react-three/rapier'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
 import { useCameraHome } from '../../hooks/camera'
+import { Ground } from './landscape/ground'
 import { useSceneControls } from '../../hooks/scene-controls'
-
-const halfGrid = gardenConfig.gridSize / 2
 
 export function Scene() {
   const sunRef = useRef<DirectionalLight>(null)
@@ -53,15 +51,7 @@ export function Scene() {
         shadow-normalBias={shadowConfig.normalBias}
       />
 
-      <mesh rotation-x={-Math.PI / 2} receiveShadow>
-        <planeGeometry args={[gardenConfig.gridSize, gardenConfig.gridSize]} />
-        <meshLambertNodeMaterial color={paletteConfig.grass[0]} />
-      </mesh>
-
-      <RigidBody type="fixed" colliders={false}>
-        {/* sunk so the top face lands on y=0 */}
-        <CuboidCollider args={[halfGrid, 0.25, halfGrid]} position={[0, -0.25, 0]} />
-      </RigidBody>
+      <Ground />
 
       <RigidBody position={[0, 6, 0]}>
         <mesh castShadow>
