@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
-import { RigidBody } from '@react-three/rapier'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
 import { useCameraHome } from '../../hooks/camera'
 import { Ground } from './landscape/ground'
@@ -53,12 +52,6 @@ export function Scene() {
 
       <Ground />
 
-      <RigidBody position={[0, 6, 0]}>
-        <mesh castShadow>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshLambertNodeMaterial color="#8a5c33" />
-        </mesh>
-      </RigidBody>
     </>
   )
 }
