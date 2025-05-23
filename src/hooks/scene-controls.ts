@@ -1,6 +1,8 @@
+import { useRef } from 'react'
 import type { RefObject } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
-import { lightConfig, shadowConfig } from '../config/scene'
+import { fogConfig, lightConfig, shadowConfig } from '../config/scene'
+import { useSceneFog } from './camera'
 import { getDebugState, setDebugState } from './debug'
 import { useDebugFolder } from './tweakpane'
 
@@ -8,12 +10,47 @@ export function useSceneControls(
   sunRef: RefObject<DirectionalLight | null>,
   skyRef: RefObject<HemisphereLight | null>,
 ) {
+  const fog = useSceneFog()
+
+  // the folders are built once, so the change handlers read the live scene
+  // through a ref instead of the values they closed over on the first frame
+  const sceneRef = useRef({ fog })
+
+  sceneRef.current = { fog }
+
   useDebugFolder('Helpers', (folder) => {
     const toggles = getDebugState()
 
     folder
       .addBinding(toggles, 'isPhysicsVisible', { label: 'physics wireframe' })
       .on('change', (event) => setDebugState({ isPhysicsVisible: event.value }))
+  })
+
+  useDebugFolder('Fog', (folder) => {
+
+    function applyFog() {
+      const { fog } = sceneRef.current
+
+      if (!fog) {
+        return
+      }
+
+      fog.color.set(fogConfig.fogColor)
+      fog.near = fogConfig.fogNear
+      fog.far = fogConfig.fogFar
+    }
+
+    folder
+      .addBinding(fogConfig, 'fogColor', { label: 'color', view: 'color' })
+      .on('change', applyFog)
+
+    folder
+      .addBinding(fogConfig, 'fogNear', { label: 'near', min: 0, max: 160, step: 1 })
+      .on('change', applyFog)
+
+    folder
+      .addBinding(fogConfig, 'fogFar', { label: 'far', min: 1, max: 240, step: 1 })
+      .on('change', applyFog)
   })
 
   useDebugFolder('Lighting', (folder) => {
