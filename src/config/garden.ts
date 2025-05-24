@@ -8,3 +8,16 @@ export const paletteConfig = {
   stone: ['#c6b79f', '#b8a88e', '#d2c4ac'],
   soil: '#4a3122',
 }
+
+export const pathConfig = {
+  columns: [
+    { x: 14, fromY: 5, toY: 21 },
+    { x: 6, fromY: 4, toY: 8 },
+  ],
+  rows: [
+    { y: 8, fromX: 6, toX: 14 },
+    { y: 5, fromX: 14, toX: 18 },
+    { y: 14, fromX: 4, toX: 14 },
+    { y: 18, fromX: 14, toX: 19 },
+  ],
+}

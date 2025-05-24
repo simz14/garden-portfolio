@@ -4,6 +4,7 @@ import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
 import { useCameraHome } from '../../hooks/camera'
 import { Ground } from './landscape/ground'
+import { Path } from './landscape/path'
 import { useSceneControls } from '../../hooks/scene-controls'
 
 export function Scene() {
@@ -51,6 +52,7 @@ export function Scene() {
       />
 
       <Ground />
+      <Path />
 
     </>
   )
