@@ -3,6 +3,7 @@ import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
 import { useCameraHome } from '../../hooks/camera'
+import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
 import { Path } from './landscape/path'
 import { useSceneControls } from '../../hooks/scene-controls'
@@ -53,6 +54,7 @@ export function Scene() {
 
       <Ground />
       <Path />
+      <Fence />
 
     </>
   )
