@@ -14,3 +14,15 @@ export const pathStoneConfig = {
   scaleRange: 0.36,
   maxTilt: 0.07,
 }
+
+export const fenceConfig = {
+  postWidth: 0.16,
+  postHeight: 0.75,
+  postOffset: 0.42,
+  postInset: 0.18,
+  railHeights: [0.3, 0.6],
+  railThickness: 0.09,
+  railDepth: 0.08,
+  railOffset: 0.04,
+  barrierThickness: 1,
+}

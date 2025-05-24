@@ -21,3 +21,7 @@ export const pathConfig = {
     { y: 18, fromX: 14, toX: 19 },
   ],
 }
+
+export const obstacleConfig = {
+  wallHeight: 3,
+}
