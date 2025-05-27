@@ -27,3 +27,8 @@ export const pathConfig = {
 export const obstacleConfig = {
   wallHeight: 3,
 }
+
+export const groundTextureConfig = {
+  size: 2048,
+  bladeCount: 24000,
+}
