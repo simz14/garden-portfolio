@@ -9,6 +9,7 @@ export const paletteConfig = {
   soil: '#4a3122',
   fence: '#a97d4a',
   rail: '#bd8d51',
+  shrub: ['#3d7a38', '#4d9040'],
 }
 
 export const pathConfig = {
@@ -22,6 +23,18 @@ export const pathConfig = {
     { y: 14, fromX: 4, toX: 14 },
     { y: 18, fromX: 14, toX: 19 },
   ],
+}
+
+export const shrubConfig = {
+  radius: 0.85,
+  positions: [
+    [1.6, 12],
+    [2.2, 20],
+    [21, 12.5],
+    [10, 21],
+    [1.8, 6.6],
+    [21.6, 9],
+  ] as [number, number][],
 }
 
 export const obstacleConfig = {

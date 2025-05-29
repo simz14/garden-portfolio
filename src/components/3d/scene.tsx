@@ -7,6 +7,7 @@ import { useWind } from '../../hooks/wind'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
 import { Path } from './landscape/path'
+import { Decor } from './objects/decor'
 import { useSceneControls } from '../../hooks/scene-controls'
 
 export function Scene() {
@@ -57,6 +58,8 @@ export function Scene() {
       <Ground />
       <Path />
       <Fence />
+
+      <Decor />
 
     </>
   )
