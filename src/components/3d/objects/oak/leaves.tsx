@@ -43,6 +43,7 @@ export function Leaves() {
 
   return (
     <Instances
+      frustumCulled={false}
       geometry={leaf}
       limit={blades.length}
       range={blades.length}
