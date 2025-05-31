@@ -1,6 +1,7 @@
 import { oakConfig } from '../../../config/oak'
 import { getWorldOffset } from '../../../utils/garden'
 import { Branches } from './oak/branches'
+import { Canopy } from './oak/canopy'
 import { Trunk } from './oak/trunk'
 
 export function Oak() {
@@ -8,6 +9,7 @@ export function Oak() {
     <group position={[getWorldOffset(oakConfig.x), 0, getWorldOffset(oakConfig.y)]}>
       <Trunk />
       <Branches />
+      <Canopy />
     </group>
   )
 }

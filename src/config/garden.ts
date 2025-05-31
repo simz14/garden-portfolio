@@ -7,6 +7,7 @@ export const paletteConfig = {
   grass: ['#568f42', '#4c8339', '#5f9a4a', '#457a34'],
   stone: ['#c6b79f', '#b8a88e', '#d2c4ac'],
   soil: '#4a3122',
+  canopy: ['#2f6b34', '#3c7d38', '#275b2b', '#498c3d', '#346f33', '#559041'],
   timber: '#8a5c33',
   bark: '#68432d',
   fence: '#a97d4a',
