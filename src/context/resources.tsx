@@ -5,6 +5,7 @@ import { MeshLambertNodeMaterial } from 'three/webgpu'
 import { uniform } from 'three/tsl'
 import { seedConfig } from '../config/random'
 import { resourceConfig } from '../config/resources'
+import { createLumpyBall } from '../utils/geometry'
 import { createRandom } from '../utils/random'
 import { applyWindSway } from '../shaders/wind-sway'
 import { createGroundTexture } from '../utils/textures'
@@ -63,6 +64,9 @@ function createResources() {
     ground,
     box: track(new BoxGeometry(1, 1, 1)),
     ball: track(new SphereGeometry(1, ...resourceConfig.ballSegments)),
+    canopies: resourceConfig.canopies.map((canopy) =>
+      track(createLumpyBall(canopy.detail, canopy.amount, canopy.frequency)),
+    ),
     dispose() {
       for (const item of bin) {
         item.dispose()
