@@ -3,6 +3,7 @@ export const resourceConfig = {
   bladeColor: '#4b8a3c',
   bladeWindStrength: 0.16,
   ballSegments: [6, 5] as [number, number],
+  leaf: { detail: 0, amount: 0.3, frequency: 3.4 },
   canopies: [
     { detail: 1, amount: 0.19, frequency: 3.1 },
     { detail: 1, amount: 0.27, frequency: 2.2 },

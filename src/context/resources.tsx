@@ -64,6 +64,13 @@ function createResources() {
     ground,
     box: track(new BoxGeometry(1, 1, 1)),
     ball: track(new SphereGeometry(1, ...resourceConfig.ballSegments)),
+    leaf: track(
+      createLumpyBall(
+        resourceConfig.leaf.detail,
+        resourceConfig.leaf.amount,
+        resourceConfig.leaf.frequency,
+      ),
+    ),
     canopies: resourceConfig.canopies.map((canopy) =>
       track(createLumpyBall(canopy.detail, canopy.amount, canopy.frequency)),
     ),

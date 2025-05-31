@@ -2,6 +2,7 @@ import { oakConfig } from '../../../config/oak'
 import { getWorldOffset } from '../../../utils/garden'
 import { Branches } from './oak/branches'
 import { Canopy } from './oak/canopy'
+import { Leaves } from './oak/leaves'
 import { Trunk } from './oak/trunk'
 
 export function Oak() {
@@ -10,6 +11,7 @@ export function Oak() {
       <Trunk />
       <Branches />
       <Canopy />
+      <Leaves />
     </group>
   )
 }
