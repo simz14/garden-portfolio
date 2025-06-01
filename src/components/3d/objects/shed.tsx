@@ -3,6 +3,7 @@ import { shedConfig } from '../../../config/shed'
 import { useResources } from '../../../context/resources'
 import { getWorldOffset } from '../../../utils/garden'
 import { Door } from './shed/door'
+import { Roof } from './shed/roof'
 import { Walls } from './shed/walls'
 
 const halfWidth = shedConfig.width / 2
@@ -35,6 +36,7 @@ export function Shed() {
 
       <Walls />
       <Door />
+      <Roof />
     </group>
   )
 }
