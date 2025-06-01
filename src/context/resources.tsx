@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { BoxGeometry, SphereGeometry } from 'three'
 import { MeshLambertNodeMaterial } from 'three/webgpu'
 import { uniform } from 'three/tsl'
+import { paletteConfig } from '../config/garden'
 import { seedConfig } from '../config/random'
 import { resourceConfig } from '../config/resources'
 import { createLumpyBall } from '../utils/geometry'
@@ -62,6 +63,14 @@ function createResources() {
     wind,
     bladeMaterial,
     ground,
+    glassMaterial: track(
+      new MeshLambertNodeMaterial({
+        color: paletteConfig.glass,
+        transparent: true,
+        opacity: resourceConfig.glassOpacity,
+        depthWrite: false,
+      }),
+    ),
     box: track(new BoxGeometry(1, 1, 1)),
     ball: track(new SphereGeometry(1, ...resourceConfig.ballSegments)),
     leaf: track(
