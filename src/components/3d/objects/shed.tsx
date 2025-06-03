@@ -4,6 +4,7 @@ import { useResources } from '../../../context/resources'
 import { getWorldOffset } from '../../../utils/garden'
 import { Door } from './shed/door'
 import { Roof } from './shed/roof'
+import { SeedTrays } from './shed/seed-trays'
 import { Walls } from './shed/walls'
 import { Workbench } from './shed/workbench'
 
@@ -47,6 +48,8 @@ export function Shed() {
         at={[-halfWidth + 0.15, -halfDepth + 0.85]}
         size={[0.62, shedConfig.depth - 1]}
       />
+
+      <SeedTrays />
     </group>
   )
 }
