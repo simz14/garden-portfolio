@@ -5,6 +5,7 @@ import { getWorldOffset } from '../../../utils/garden'
 import { Door } from './shed/door'
 import { Roof } from './shed/roof'
 import { Walls } from './shed/walls'
+import { Workbench } from './shed/workbench'
 
 const halfWidth = shedConfig.width / 2
 const halfDepth = shedConfig.depth / 2
@@ -37,6 +38,15 @@ export function Shed() {
       <Walls />
       <Door />
       <Roof />
+
+      <Workbench
+        at={[-halfWidth + 0.15, -halfDepth + 0.15]}
+        size={[shedConfig.width - 0.3, 0.62]}
+      />
+      <Workbench
+        at={[-halfWidth + 0.15, -halfDepth + 0.85]}
+        size={[0.62, shedConfig.depth - 1]}
+      />
     </group>
   )
 }
