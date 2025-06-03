@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { ExtrudeGeometry, Shape } from 'three'
 import { MeshLambertNodeMaterial } from 'three/webgpu'
 import { paletteConfig } from '../../../../config/garden'
@@ -41,6 +41,13 @@ export function Roof() {
       }),
     [],
   )
+
+  useEffect(() => {
+    return function disposeRoof() {
+      geometry.dispose()
+      material.dispose()
+    }
+  }, [geometry, material])
 
   return <mesh geometry={geometry} material={material} castShadow />
 }
