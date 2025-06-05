@@ -63,6 +63,7 @@ function createResources() {
     wind,
     bladeMaterial,
     ground,
+    logoMaterial: track(new MeshLambertNodeMaterial({ vertexColors: true })),
     glassMaterial: track(
       new MeshLambertNodeMaterial({
         color: paletteConfig.glass,
