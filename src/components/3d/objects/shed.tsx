@@ -1,4 +1,5 @@
-import { paletteConfig } from '../../../config/garden'
+import { CuboidCollider, RigidBody } from '@react-three/rapier'
+import { obstacleConfig, paletteConfig } from '../../../config/garden'
 import { shedConfig } from '../../../config/shed'
 import { useResources } from '../../../context/resources'
 import { getWorldOffset } from '../../../utils/garden'
@@ -13,6 +14,7 @@ import { Workbench } from './shed/workbench'
 
 const halfWidth = shedConfig.width / 2
 const halfDepth = shedConfig.depth / 2
+const halfWall = obstacleConfig.wallHeight / 2
 
 const baseSize: [number, number, number] = [
   shedConfig.width + shedConfig.baseOverhang * 2,
@@ -56,6 +58,17 @@ export function Shed() {
       <Shelf />
       <Display />
       <PotStack />
+
+      <RigidBody type="fixed" colliders={false}>
+        <CuboidCollider
+          args={[
+            halfWidth + shedConfig.footprintMargin,
+            halfWall,
+            halfDepth + shedConfig.footprintMargin,
+          ]}
+          position={[0, halfWall, 0]}
+        />
+      </RigidBody>
     </group>
   )
 }
