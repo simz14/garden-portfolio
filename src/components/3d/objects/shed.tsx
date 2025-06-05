@@ -4,6 +4,7 @@ import { useResources } from '../../../context/resources'
 import { getWorldOffset } from '../../../utils/garden'
 import { Door } from './shed/door'
 import { Display } from './shed/display'
+import { PotStack } from './shed/pot-stack'
 import { Roof } from './shed/roof'
 import { SeedTrays } from './shed/seed-trays'
 import { Shelf } from './shed/shelf'
@@ -54,6 +55,7 @@ export function Shed() {
       <SeedTrays />
       <Shelf />
       <Display />
+      <PotStack />
     </group>
   )
 }
