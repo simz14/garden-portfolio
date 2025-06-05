@@ -5,6 +5,7 @@ import { getWorldOffset } from '../../../utils/garden'
 import { Door } from './shed/door'
 import { Roof } from './shed/roof'
 import { SeedTrays } from './shed/seed-trays'
+import { Shelf } from './shed/shelf'
 import { Walls } from './shed/walls'
 import { Workbench } from './shed/workbench'
 
@@ -50,6 +51,7 @@ export function Shed() {
       />
 
       <SeedTrays />
+      <Shelf />
     </group>
   )
 }
