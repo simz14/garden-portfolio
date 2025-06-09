@@ -4,6 +4,7 @@ import { physicsConfig } from '../config/scene'
 interface DebugState {
   isPanelVisible: boolean
   isPhysicsVisible: boolean
+  isWireframeVisible: boolean
 }
 
 const listeners = new Set<() => void>()
@@ -11,6 +12,7 @@ const listeners = new Set<() => void>()
 let debugState: DebugState = {
   isPanelVisible: false,
   isPhysicsVisible: physicsConfig.isDebugVisible,
+  isWireframeVisible: false,
 }
 
 function subscribe(listener: () => void) {

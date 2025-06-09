@@ -24,6 +24,10 @@ export function useSceneControls(
     folder
       .addBinding(toggles, 'isPhysicsVisible', { label: 'physics wireframe' })
       .on('change', (event) => setDebugState({ isPhysicsVisible: event.value }))
+
+    folder
+      .addBinding(toggles, 'isWireframeVisible', { label: 'object wireframe' })
+      .on('change', (event) => setDebugState({ isWireframeVisible: event.value }))
   })
 
   useDebugFolder('Fog', (folder) => {

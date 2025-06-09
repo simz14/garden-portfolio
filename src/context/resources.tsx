@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
 import type { ReactNode } from 'react'
 import { BoxGeometry, SphereGeometry } from 'three'
-import { MeshLambertNodeMaterial } from 'three/webgpu'
+import { MeshBasicNodeMaterial, MeshLambertNodeMaterial } from 'three/webgpu'
 import { uniform } from 'three/tsl'
 import { paletteConfig } from '../config/garden'
 import { seedConfig } from '../config/random'
@@ -63,6 +63,9 @@ function createResources() {
     wind,
     bladeMaterial,
     ground,
+    wireframeMaterial: track(
+      new MeshBasicNodeMaterial({ color: resourceConfig.wireframeColor, wireframe: true }),
+    ),
     logoMaterial: track(new MeshLambertNodeMaterial({ vertexColors: true })),
     glassMaterial: track(
       new MeshLambertNodeMaterial({
