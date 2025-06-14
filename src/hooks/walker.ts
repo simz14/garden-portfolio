@@ -67,5 +67,9 @@ export function useWalker() {
     position.x += movement.x
     position.y += movement.y
     position.z += movement.z
+
+    if (parts.controller.computedGrounded()) {
+      fallSpeed.current = 0
+    }
   }
 }
