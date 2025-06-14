@@ -1,40 +1,44 @@
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
+import { KeyboardControls } from '@react-three/drei'
 import { Physics } from '@react-three/rapier'
+import { keyboardMap } from '../../config/controls'
 import { physicsConfig } from '../../config/scene'
 import { ResourcesProvider } from '../../context/resources'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
   return (
-    <section className="relative h-svh w-full overflow-hidden">
-      <Canvas
-        shadows="percentage"
-        gl={async (props) => {
-          // node materials need three's node renderer; it picks webgpu when
-          // the browser has it and quietly falls back to webgl 2 when not
-          const renderer = new WebGPURenderer({
-            ...props,
-            // r3f types the canvas as possibly offscreen, the web renderer
-            // only ever hands over the real one
-            canvas: props.canvas as HTMLCanvasElement,
-          })
+    <KeyboardControls map={keyboardMap}>
+      <section className="relative h-svh w-full overflow-hidden">
+        <Canvas
+          shadows="percentage"
+          gl={async (props) => {
+            // node materials need three's node renderer; it picks webgpu when
+            // the browser has it and quietly falls back to webgl 2 when not
+            const renderer = new WebGPURenderer({
+              ...props,
+              // r3f types the canvas as possibly offscreen, the web renderer
+              // only ever hands over the real one
+              canvas: props.canvas as HTMLCanvasElement,
+            })
 
-          await renderer.init()
+            await renderer.init()
 
-          return renderer
-        }}
-      >
-        <ResourcesProvider>
-          <Physics
-            gravity={physicsConfig.gravity}
-            timeStep={physicsConfig.timeStep}
-            debug={physicsConfig.isDebugVisible}
-          >
-            <Scene />
-          </Physics>
-        </ResourcesProvider>
-      </Canvas>
-    </section>
+            return renderer
+          }}
+        >
+          <ResourcesProvider>
+            <Physics
+              gravity={physicsConfig.gravity}
+              timeStep={physicsConfig.timeStep}
+              debug={physicsConfig.isDebugVisible}
+            >
+              <Scene />
+            </Physics>
+          </ResourcesProvider>
+        </Canvas>
+      </section>
+    </KeyboardControls>
   )
 }
