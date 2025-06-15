@@ -64,7 +64,8 @@ export function useGardenerActions(groupRef: RefObject<Group | null>) {
     )
   }
 
-  useFrame(({ camera }, delta) => {
+  useFrame(({ camera }, rawDelta) => {
+    const delta = Math.min(rawDelta, 0.1)
     const group = groupRef.current
 
     if (!group) {
