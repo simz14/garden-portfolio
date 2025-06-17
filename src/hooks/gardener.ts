@@ -41,7 +41,14 @@ export function useGardenerActions(
       return
     }
 
-    motion.current.stride = createStrideTimeline(body, parts)
+    const stride = createStrideTimeline(body, parts)
+
+    motion.current.stride = stride
+
+    return function killTimelines() {
+      stride.kill()
+      motion.current.stride = null
+    }
   }, [bodyRef, partsRef])
 
   function startStride() {
