@@ -9,7 +9,7 @@ export function Gardener() {
   const groupRef = useRef<Group>(null)
   const partsRef = useRef<GardenerParts>(null)
 
-  useGardenerActions(groupRef)
+  useGardenerActions(groupRef, groupRef, partsRef)
 
   return (
     <group
