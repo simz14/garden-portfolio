@@ -7,9 +7,10 @@ import type { GardenerParts } from './gardener/body'
 
 export function Gardener() {
   const groupRef = useRef<Group>(null)
+  const bodyRef = useRef<Group>(null)
   const partsRef = useRef<GardenerParts>(null)
 
-  useGardenerActions(groupRef, groupRef, partsRef)
+  useGardenerActions(groupRef, bodyRef, partsRef)
 
   return (
     <group
@@ -18,7 +19,11 @@ export function Gardener() {
       rotation-y={gardenerConfig.facing}
       scale={gardenerConfig.scale}
     >
-      <Body ref={partsRef} />
+      {/* The root group is owned by physics and steering, so the walk bounce and
+          the body lean live one level in, where they cannot fight the fall. */}
+      <group ref={bodyRef}>
+        <Body ref={partsRef} />
+      </group>
     </group>
   )
 }
