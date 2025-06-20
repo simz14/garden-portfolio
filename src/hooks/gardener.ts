@@ -10,6 +10,7 @@ import { GardenControl } from '../config/controls'
 import { gardenerMotionConfig, gardenerWalkConfig } from '../config/gardener'
 import { dampAngle, getYawAngle } from '../utils/motion'
 import { setGardenerPosition } from './gardener-position'
+import { useThumbstick } from './movement'
 import { useWalker } from './walker'
 
 const worldUp = new Vector3(0, 1, 0)
@@ -20,6 +21,7 @@ export function useGardenerActions(
   partsRef: RefObject<GardenerParts | null>,
 ) {
   const walk = useWalker()
+  const { getThumbstick } = useThumbstick()
   const [, getKeys] = useKeyboardControls<GardenControl>()
 
   const vectors = useMemo(
@@ -51,8 +53,8 @@ export function useGardenerActions(
     }
   }, [bodyRef, partsRef])
 
-  function startStride() {
-    motion.current.stride?.timeScale(gardenerMotionConfig.strideRate).play()
+  function startStride(pace: number) {
+    motion.current.stride?.timeScale(gardenerMotionConfig.strideRate * pace).play()
     motion.current.isWalking = true
   }
 
@@ -73,6 +75,7 @@ export function useGardenerActions(
     vectors.right.crossVectors(vectors.forward, worldUp)
 
     const keys = getKeys()
+    const stick = getThumbstick()
 
     vectors.step.set(0, 0, 0)
 
@@ -92,6 +95,9 @@ export function useGardenerActions(
       vectors.step.sub(vectors.right)
     }
 
+    vectors.step.addScaledVector(vectors.forward, stick.y)
+    vectors.step.addScaledVector(vectors.right, stick.x)
+
     if (vectors.step.lengthSq() === 0) {
       stopStride(body, parts)
       walk(group.position, 0, 0, delta)
@@ -99,7 +105,10 @@ export function useGardenerActions(
       return
     }
 
-    vectors.step.normalize().multiplyScalar(gardenerWalkConfig.speed * delta)
+    const isKeyed = keys.forward || keys.backward || keys.left || keys.right
+    const pace = isKeyed ? 1 : Math.min(1, Math.hypot(stick.x, stick.y))
+
+    vectors.step.normalize().multiplyScalar(gardenerWalkConfig.speed * pace * delta)
     walk(group.position, vectors.step.x, vectors.step.z, delta)
 
     group.rotation.y = dampAngle(
@@ -109,7 +118,7 @@ export function useGardenerActions(
       delta,
     )
 
-    startStride()
+    startStride(pace)
   }
 
   useFrame(({ camera }, rawDelta) => {
