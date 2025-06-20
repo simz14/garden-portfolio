@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import type { RefObject } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
+import { gardenerWalkConfig } from '../config/gardener'
 import { fogConfig, lightConfig, shadowConfig } from '../config/scene'
 import { useSceneFog } from './camera'
 import { getDebugState, setDebugState } from './debug'
@@ -138,5 +139,10 @@ export function useSceneControls(
     folder.addBinding(shadowConfig, 'area', { min: 6, max: 40, step: 0.5 }).on('change', applyShadow)
     folder.addBinding(shadowConfig, 'near', { min: 0.1, max: 40, step: 0.5 }).on('change', applyShadow)
     folder.addBinding(shadowConfig, 'far', { min: 10, max: 200, step: 1 }).on('change', applyShadow)
+  })
+  useDebugFolder('Gardener', (folder) => {
+    folder.addBinding(gardenerWalkConfig, 'speed', { label: 'walk speed', min: 1, max: 16, step: 0.5 })
+    folder.addBinding(gardenerWalkConfig, 'slowSpeed', { label: 'task speed', min: 1, max: 10, step: 0.2 })
+    folder.addBinding(gardenerWalkConfig, 'turnRate', { label: 'turn rate', min: 1, max: 30, step: 0.5 })
   })
 }
