@@ -25,7 +25,12 @@ export function Scene() {
     <>
       <OrthographicCamera makeDefault near={cameraConfig.near} far={cameraConfig.far} />
 
-      <CameraControls makeDefault truckSpeed={0} dollySpeed={0} />
+      <CameraControls
+        makeDefault
+        smoothTime={cameraConfig.smoothTime}
+        truckSpeed={0}
+        dollySpeed={0}
+      />
 
       <fog
         attach="fog"

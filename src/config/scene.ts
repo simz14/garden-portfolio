@@ -5,6 +5,10 @@ export const cameraConfig = {
   distance: 34,
   polarAngle: Math.PI / 3,
   azimuth: Math.PI / 4,
+  fitWidth: 40,
+  minFitHeight: 26,
+  maxFitHeight: 34,
+  smoothTime: 0.35,
 }
 
 export const lightConfig = {
