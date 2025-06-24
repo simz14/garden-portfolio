@@ -11,6 +11,12 @@ export const cameraConfig = {
   smoothTime: 0.35,
 }
 
+export const cameraFollowConfig = {
+  deadzone: 0.45,
+  rate: 3.2,
+  minAxisGain: 0.05,
+}
+
 export const lightConfig = {
   hemisphere: {
     skyColor: '#cfe3f2',

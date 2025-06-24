@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
-import { useCameraHome } from '../../hooks/camera'
+import { useCameraFollow, useCameraHome } from '../../hooks/camera'
 import { useWind } from '../../hooks/wind'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
@@ -18,6 +18,7 @@ export function Scene() {
   const skyRef = useRef<HemisphereLight>(null)
 
   useCameraHome()
+  useCameraFollow()
   useWind()
   useSceneControls(sunRef, skyRef)
 
