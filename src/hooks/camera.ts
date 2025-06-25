@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { OrthographicCamera, Vector3 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { Fog } from 'three'
+import { CameraControlsImpl } from '@react-three/drei'
 import type { CameraControls } from '@react-three/drei'
 import { cameraConfig, cameraFollowConfig } from '../config/scene'
 import { getFittedZoom, getHomePosition } from '../utils/camera'
@@ -28,6 +29,17 @@ export function useCameraHome() {
     if (!controls) {
       return
     }
+
+    controls.mouseButtons.wheel = CameraControlsImpl.ACTION.NONE
+    controls.mouseButtons.middle = CameraControlsImpl.ACTION.NONE
+    controls.mouseButtons.right = CameraControlsImpl.ACTION.NONE
+    controls.touches.two = CameraControlsImpl.ACTION.NONE
+    controls.touches.three = CameraControlsImpl.ACTION.NONE
+
+    controls.minPolarAngle = cameraConfig.topPolarAngle
+    controls.maxPolarAngle = cameraConfig.polarAngle
+    controls.minAzimuthAngle = cameraConfig.azimuth - cameraConfig.azimuthRange
+    controls.maxAzimuthAngle = cameraConfig.azimuth + cameraConfig.azimuthRange
 
     const [x, y, z] = getHomePosition()
     const [targetX, targetY, targetZ] = cameraConfig.target
