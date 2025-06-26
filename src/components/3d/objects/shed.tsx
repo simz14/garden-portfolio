@@ -2,6 +2,7 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier'
 import { obstacleConfig, paletteConfig } from '../../../config/garden'
 import { shedConfig } from '../../../config/shed'
 import { useResources } from '../../../context/resources'
+import { useZone } from '../../../hooks/zone'
 import { getWorldOffset } from '../../../utils/garden'
 import { Door } from './shed/door'
 import { Display } from './shed/display'
@@ -11,6 +12,7 @@ import { SeedTrays } from './shed/seed-trays'
 import { Shelf } from './shed/shelf'
 import { Walls } from './shed/walls'
 import { Workbench } from './shed/workbench'
+import { HotspotId } from '../../../config/hotspots'
 
 const halfWidth = shedConfig.width / 2
 const halfDepth = shedConfig.depth / 2
@@ -24,9 +26,11 @@ const baseSize: [number, number, number] = [
 
 export function Shed() {
   const { box, getMatteMaterial } = useResources()
+  const zone = useZone(HotspotId.Tech)
 
   return (
     <group
+      {...zone}
       position={[
         getWorldOffset(shedConfig.x + halfWidth),
         0,
