@@ -15,6 +15,17 @@ export function useSceneFog() {
   return scene.fog instanceof Fog ? scene.fog : null
 }
 
+let isCameraDragging = false
+
+// a drag that ends on a hotspot should not read as a click on it
+export function setIsCameraDragging(isDragging: boolean) {
+  isCameraDragging = isDragging
+}
+
+export function getIsCameraDragging() {
+  return isCameraDragging
+}
+
 export function useCameraControls() {
   return useThree((state) => state.controls) as CameraControls | null
 }

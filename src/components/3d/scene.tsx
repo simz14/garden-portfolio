@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
-import { useCameraFollow, useCameraHome } from '../../hooks/camera'
+import { setIsCameraDragging, useCameraFollow, useCameraHome } from '../../hooks/camera'
 import { useWind } from '../../hooks/wind'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
@@ -31,6 +31,9 @@ export function Scene() {
         smoothTime={cameraConfig.smoothTime}
         truckSpeed={0}
         dollySpeed={0}
+        onControlStart={() => setIsCameraDragging(false)}
+        onControl={() => setIsCameraDragging(true)}
+        onControlEnd={() => requestAnimationFrame(() => setIsCameraDragging(false))}
       />
 
       <fog
