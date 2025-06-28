@@ -1,24 +1,34 @@
 import { useRef } from 'react'
+import { useThree } from '@react-three/fiber'
 import type { RefObject } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { gardenerWalkConfig } from '../config/gardener'
 import { hoverConfig } from '../config/hotspots'
-import { fogConfig, lightConfig, shadowConfig } from '../config/scene'
-import { useSceneFog } from './camera'
+import {
+  cameraConfig,
+  cameraFocusConfig,
+  fogConfig,
+  lightConfig,
+  shadowConfig,
+} from '../config/scene'
+import { useCameraControls, useSceneFog } from './camera'
 import { getDebugState, setDebugState } from './debug'
 import { useDebugFolder } from './tweakpane'
+import { getFittedZoom } from '../utils/camera'
 
 export function useSceneControls(
   sunRef: RefObject<DirectionalLight | null>,
   skyRef: RefObject<HemisphereLight | null>,
 ) {
+  const controls = useCameraControls()
   const fog = useSceneFog()
+  const size = useThree((state) => state.size)
 
   // the folders are built once, so the change handlers read the live scene
   // through a ref instead of the values they closed over on the first frame
-  const sceneRef = useRef({ fog })
+  const sceneRef = useRef({ controls, fog, size })
 
-  sceneRef.current = { fog }
+  sceneRef.current = { controls, fog, size }
 
   useDebugFolder('Helpers', (folder) => {
     const toggles = getDebugState()
@@ -30,6 +40,51 @@ export function useSceneControls(
     folder
       .addBinding(toggles, 'isWireframeVisible', { label: 'object wireframe' })
       .on('change', (event) => setDebugState({ isWireframeVisible: event.value }))
+  })
+
+  useDebugFolder('Camera', (folder) => {
+    function applyCamera() {
+      const { controls, size } = sceneRef.current
+
+      if (!controls) {
+        return
+      }
+
+      controls.minAzimuthAngle = cameraConfig.azimuth - cameraConfig.azimuthRange
+      controls.maxAzimuthAngle = cameraConfig.azimuth + cameraConfig.azimuthRange
+
+      // the limits have to open before rotateTo, or the new tilt is clamped away
+      controls.minPolarAngle = Math.min(cameraFocusConfig.polarAngle, cameraConfig.polarAngle)
+      controls.maxPolarAngle = Math.max(cameraFocusConfig.polarAngle, cameraConfig.polarAngle)
+
+      controls.dollyTo(cameraConfig.distance, true)
+      controls.rotateTo(controls.azimuthAngle, cameraConfig.polarAngle, true)
+      controls.zoomTo(getFittedZoom(size.width, size.height), true)
+    }
+
+    folder
+      .addBinding(cameraConfig, 'distance', { min: 10, max: 90, step: 0.5 })
+      .on('change', applyCamera)
+
+    folder
+      .addBinding(cameraConfig, 'polarAngle', { label: 'tilt', min: 0.2, max: 1.5, step: 0.01 })
+      .on('change', applyCamera)
+
+    folder
+      .addBinding(cameraConfig, 'azimuthRange', { label: 'drag range', min: 0, max: 1.6, step: 0.02 })
+      .on('change', applyCamera)
+
+    folder
+      .addBinding(cameraConfig, 'fitWidth', { label: 'fit width', min: 12, max: 90, step: 0.5 })
+      .on('change', applyCamera)
+
+    folder
+      .addBinding(cameraConfig, 'minFitHeight', { label: 'fit height', min: 8, max: 70, step: 0.5 })
+      .on('change', applyCamera)
+
+    folder
+      .addBinding(cameraConfig, 'maxFitHeight', { label: 'fit height max', min: 12, max: 90, step: 0.5 })
+      .on('change', applyCamera)
   })
 
   useDebugFolder('Fog', (folder) => {
