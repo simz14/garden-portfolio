@@ -13,6 +13,15 @@ export const cameraConfig = {
   smoothTime: 0.35,
 }
 
+export const cameraFocusConfig = {
+  durationSeconds: 1.1,
+  polarAngle: Math.PI / 2 - Math.PI / 9,
+  zoom: 2.2,
+  fogNear: 62,
+  fogFar: 110,
+  portraitLift: 0.16,
+}
+
 export const cameraFollowConfig = {
   deadzone: 0.45,
   rate: 3.2,

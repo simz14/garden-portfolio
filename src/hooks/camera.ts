@@ -1,12 +1,13 @@
 import { useEffect } from 'react'
-import { OrthographicCamera, Vector3 } from 'three'
+import { Fog, OrthographicCamera, Vector3 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { Fog } from 'three'
 import { CameraControlsImpl } from '@react-three/drei'
 import type { CameraControls } from '@react-three/drei'
 import { cameraConfig, cameraFollowConfig } from '../config/scene'
+import { createFocusTimeline } from '../animations/camera'
 import { getFittedZoom, getHomePosition } from '../utils/camera'
 import { getSmoothingFactor } from '../utils/motion'
+import { useGarden } from './garden'
 import { getGardenerPosition } from './gardener-position'
 
 export function useSceneFog() {
@@ -16,6 +17,7 @@ export function useSceneFog() {
 }
 
 let isCameraDragging = false
+let focusTween: gsap.core.Tween | null = null
 
 // a drag that ends on a hotspot should not read as a click on it
 export function setIsCameraDragging(isDragging: boolean) {
@@ -28,6 +30,33 @@ export function getIsCameraDragging() {
 
 export function useCameraControls() {
   return useThree((state) => state.controls) as CameraControls | null
+}
+
+export function useCameraMoves() {
+  const controls = useCameraControls()
+  const fog = useSceneFog()
+  const size = useThree((state) => state.size)
+  const selected = useGarden((state) => state.selected)
+
+  useEffect(() => {
+    const canFocus = controls !== null && fog !== null
+
+    if (!canFocus) {
+      return
+    }
+
+    const tween = createFocusTimeline(controls, fog, size, selected)
+
+    focusTween = tween
+
+    return function killFocus() {
+      tween.kill()
+
+      if (focusTween === tween) {
+        focusTween = null
+      }
+    }
+  }, [controls, fog, selected])
 }
 
 // drop the camera on its isometric perch once, everything after that is a move
@@ -77,9 +106,13 @@ function getExcess(screen: number, limit: number) {
 export function useCameraFollow() {
   const controls = useCameraControls()
   const size = useThree((state) => state.size)
+  const selected = useGarden((state) => state.selected)
 
   useFrame(({ camera }, rawDelta) => {
-    const canFollow = controls !== null && camera instanceof OrthographicCamera
+    const isFocusing = focusTween !== null && focusTween.isActive()
+    const canFollow =
+      controls !== null && selected === null && !isFocusing &&
+      camera instanceof OrthographicCamera
 
     if (!canFollow) {
       return
