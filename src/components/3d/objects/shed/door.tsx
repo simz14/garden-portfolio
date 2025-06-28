@@ -1,11 +1,17 @@
+import { useEffect, useRef } from 'react'
+import type { Group } from 'three'
 import { paletteConfig } from '../../../../config/garden'
 import { shedConfig, shedDoorConfig } from '../../../../config/shed'
+import { createDoorSlideTween } from '../../../../animations/shed'
+import { useGarden } from '../../../../hooks/garden'
 import { useResources } from '../../../../context/resources'
+import { HotspotId } from '../../../../config/hotspots'
 
 const halfWidth = shedConfig.width / 2
 const halfDepth = shedConfig.depth / 2
 const homeX = halfWidth
 const doorHeight = shedConfig.height * shedDoorConfig.heightRatio
+const travel = shedDoorConfig.width - shedDoorConfig.barWidth
 const midHeight = shedConfig.floorHeight + doorHeight / 2
 
 const verticalBars = [
@@ -20,11 +26,27 @@ const horizontalBars = [
 
 export function Door() {
   const { box, getMatteMaterial, glassMaterial } = useResources()
+  const isOpen = useGarden((state) => state.selected === HotspotId.Tech && state.isReached)
+  const doorRef = useRef<Group>(null)
 
   const frameMaterial = getMatteMaterial(paletteConfig.frame)
 
+  useEffect(() => {
+    const door = doorRef.current
+
+    if (!door) {
+      return
+    }
+
+    const tween = createDoorSlideTween(door, homeX, travel, isOpen)
+
+    return function killTween() {
+      tween.kill()
+    }
+  }, [isOpen])
+
   return (
-    <group position={[homeX, 0, halfDepth + 0.05]}>
+    <group ref={doorRef} position={[homeX, 0, halfDepth + 0.05]}>
       <mesh
         material={glassMaterial}
         position={[-shedDoorConfig.width / 2, midHeight, 0]}

@@ -4,13 +4,14 @@ import { shedConfig } from '../../../config/shed'
 import { useResources } from '../../../context/resources'
 import { useZone } from '../../../hooks/zone'
 import { getWorldOffset } from '../../../utils/garden'
-import { Door } from './shed/door'
 import { Display } from './shed/display'
+import { Door } from './shed/door'
+import { Walls } from './shed/walls'
+import { Lamp } from './shed/lamp'
 import { PotStack } from './shed/pot-stack'
 import { Roof } from './shed/roof'
 import { SeedTrays } from './shed/seed-trays'
 import { Shelf } from './shed/shelf'
-import { Walls } from './shed/walls'
 import { Workbench } from './shed/workbench'
 import { HotspotId } from '../../../config/hotspots'
 
@@ -48,6 +49,7 @@ export function Shed() {
       <Walls />
       <Door />
       <Roof />
+      <Lamp />
 
       <Workbench
         at={[-halfWidth + 0.15, -halfDepth + 0.15]}
