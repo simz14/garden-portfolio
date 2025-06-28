@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import type { RefObject } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { gardenerWalkConfig } from '../config/gardener'
+import { hoverConfig } from '../config/hotspots'
 import { fogConfig, lightConfig, shadowConfig } from '../config/scene'
 import { useSceneFog } from './camera'
 import { getDebugState, setDebugState } from './debug'
@@ -144,5 +145,11 @@ export function useSceneControls(
     folder.addBinding(gardenerWalkConfig, 'speed', { label: 'walk speed', min: 1, max: 16, step: 0.5 })
     folder.addBinding(gardenerWalkConfig, 'slowSpeed', { label: 'task speed', min: 1, max: 10, step: 0.2 })
     folder.addBinding(gardenerWalkConfig, 'turnRate', { label: 'turn rate', min: 1, max: 30, step: 0.5 })
+  })
+
+  useDebugFolder('Hotspots', (folder) => {
+    folder.addBinding(hoverConfig, 'lift', { label: 'hover lift', min: 0, max: 1.2, step: 0.05 })
+    folder.addBinding(hoverConfig, 'seconds', { label: 'hover secs', min: 0.05, max: 1.5, step: 0.01 })
+    folder.addBinding(hoverConfig, 'ringOpacity', { label: 'ring opacity', min: 0, max: 1, step: 0.05 })
   })
 }
