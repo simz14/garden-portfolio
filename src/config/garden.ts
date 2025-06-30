@@ -8,6 +8,7 @@ export const paletteConfig = {
   stone: ['#c6b79f', '#b8a88e', '#d2c4ac'],
   soil: '#4a3122',
   accent: '#8a5abf',
+  flag: '#d62f2f',
   pot: '#c05f33',
   base: '#b5a288',
   glass: '#cadfe8',

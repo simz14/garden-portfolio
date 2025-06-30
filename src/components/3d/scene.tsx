@@ -15,6 +15,7 @@ import { Path } from './landscape/path'
 import { Decor } from './objects/decor'
 import { Gardener } from './objects/gardener'
 import { HotspotRings } from './objects/hotspot-rings'
+import { Mailbox } from './objects/mailbox'
 import { Oak } from './objects/oak'
 import { Shed } from './objects/shed'
 import { useSceneControls } from '../../hooks/scene-controls'
@@ -80,6 +81,7 @@ export function Scene() {
 
       <Oak />
       <Shed />
+      <Mailbox />
       <Decor />
       <Gardener />
 

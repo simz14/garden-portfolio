@@ -7,6 +7,7 @@ interface GardenState {
   nearby: HotspotId | null
   isReady: boolean
   isReached: boolean
+  isDelivered: boolean
 }
 
 const initialState: GardenState = {
@@ -15,6 +16,7 @@ const initialState: GardenState = {
   nearby: null,
   isReady: true,
   isReached: false,
+  isDelivered: false,
 }
 
 const listeners = new Set<() => void>()
