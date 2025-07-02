@@ -1,0 +1,43 @@
+export enum FlowerKind {
+  Tulip = 'tulip',
+  Rose = 'rose',
+  Field = 'field',
+}
+
+export const bedConfig = {
+  size: 2.6,
+  rowSplit: 14,
+  wateringOffset: 0.6,
+  frameHeight: 0.44,
+  frameInset: 0.14,
+  soilThickness: 0.08,
+  soilTop: 0.48,
+  leafCount: 12,
+  leafMinRadius: 0.18,
+  leafRadiusSwing: 0.11,
+  leafMargin: 0.35,
+  flowerCount: 9,
+  flowersPerRow: 3,
+  flowerMargin: 0.4,
+  flowerJitter: 0.22,
+  flowerMinScale: 0.85,
+  flowerScaleSwing: 0.35,
+  flowerLift: 0.22,
+  flowerSettleRate: 3,
+  seedStride: 977,
+  sign: {
+    postSize: [0.05, 0.36, 0.05] as [number, number, number],
+    postColor: '#bfa47f',
+    boardSize: [0.4, 0.2, 0.03] as [number, number, number],
+    boardColor: '#efe6d4',
+    labelHeight: 1.35,
+  },
+  beds: [
+    { x: 4, y: 10.6, kind: FlowerKind.Rose, leaf: '#417d38', petal: '#e0417e', heart: '#ffc233' },
+    { x: 7.2, y: 10.6, kind: FlowerKind.Tulip, leaf: '#4d8a3d', petal: '#f5a615', heart: '#ffd257' },
+    { x: 10.4, y: 10.6, kind: FlowerKind.Field, leaf: '#3c7a3b', petal: '#4a76dd', heart: '#ffbe22' },
+    { x: 4, y: 15.6, kind: FlowerKind.Tulip, leaf: '#47843d', petal: '#df3f22', heart: '#ff8a4d' },
+    { x: 7.2, y: 15.6, kind: FlowerKind.Rose, leaf: '#3f7d3c', petal: '#8a5abf', heart: '#e6c979' },
+    { x: 10.4, y: 15.6, kind: FlowerKind.Field, leaf: '#40873f', petal: '#14a894', heart: '#ffc233' },
+  ] as { x: number, y: number, kind: FlowerKind, leaf: string, petal: string, heart: string }[],
+}

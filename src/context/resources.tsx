@@ -48,9 +48,11 @@ function createResources() {
 
   // one shared uniform, so a single number sways every blade and flower at once
   const wind = uniform(0)
+  const flowerMaterial = track(new MeshLambertNodeMaterial({ vertexColors: true }))
   const bladeMaterial = track(new MeshLambertNodeMaterial({ color: resourceConfig.bladeColor }))
 
   applyWindSway(bladeMaterial, resourceConfig.bladeWindStrength, wind)
+  applyWindSway(flowerMaterial, resourceConfig.flowerWindStrength, wind)
 
   const ground = createGroundTexture(createRandom(seedConfig.ground))
 
@@ -61,6 +63,7 @@ function createResources() {
   return {
     getMatteMaterial,
     wind,
+    flowerMaterial,
     bladeMaterial,
     ground,
     wireframeMaterial: track(

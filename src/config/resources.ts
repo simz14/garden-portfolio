@@ -2,6 +2,7 @@ export const resourceConfig = {
   windSpeed: 1.15,
   bladeColor: '#4b8a3c',
   bladeWindStrength: 0.16,
+  flowerWindStrength: 0.09,
   wireframeColor: '#ff4444',
   glassOpacity: 0.42,
   ballSegments: [6, 5] as [number, number],
