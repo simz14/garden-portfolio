@@ -12,6 +12,7 @@ import { useWind } from '../../hooks/wind'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
 import { Path } from './landscape/path'
+import { Beds } from './objects/beds'
 import { Decor } from './objects/decor'
 import { Gardener } from './objects/gardener'
 import { HotspotRings } from './objects/hotspot-rings'
@@ -81,6 +82,7 @@ export function Scene() {
 
       <Oak />
       <Shed />
+      <Beds />
       <Mailbox />
       <Decor />
       <Gardener />
