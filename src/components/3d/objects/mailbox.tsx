@@ -5,6 +5,7 @@ import { useResources } from '../../../context/resources'
 import { useZone } from '../../../hooks/zone'
 import { getWorldOffset } from '../../../utils/garden'
 import { Box } from './mailbox/box'
+import { Envelopes } from './mailbox/envelopes'
 import { Grass } from './mailbox/grass'
 import { HotspotId } from '../../../config/hotspots'
 
@@ -44,6 +45,7 @@ export function Mailbox() {
       />
 
       <Box />
+      <Envelopes />
       <Grass />
 
       <RigidBody type="fixed" colliders={false}>
