@@ -3,6 +3,7 @@ import { obstacleConfig } from '../../../config/garden'
 import { oakConfig } from '../../../config/oak'
 import { useZone } from '../../../hooks/zone'
 import { getWorldOffset } from '../../../utils/garden'
+import { Bench } from './oak/bench'
 import { Branches } from './oak/branches'
 import { Canopy } from './oak/canopy'
 import { Leaves } from './oak/leaves'
@@ -19,6 +20,7 @@ export function Oak() {
       <Trunk />
       <Branches />
       <Canopy />
+      <Bench />
       <Leaves />
 
       <RigidBody type="fixed" colliders={false}>

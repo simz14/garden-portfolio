@@ -16,6 +16,7 @@ export const paletteConfig = {
   canopy: ['#2f6b34', '#3c7d38', '#275b2b', '#498c3d', '#346f33', '#559041'],
   timber: '#8a5c33',
   bark: '#68432d',
+  bench: '#9d6a3a',
   fence: '#a97d4a',
   rail: '#bd8d51',
   shrub: ['#3d7a38', '#4d9040'],
