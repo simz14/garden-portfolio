@@ -1,3 +1,8 @@
+export const rendererConfig = {
+  highPixelRatio: 2,
+  lowPixelRatio: 1,
+}
+
 export const cameraConfig = {
   near: 0.1,
   far: 320,
