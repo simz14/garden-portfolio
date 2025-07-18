@@ -1,0 +1,75 @@
+import { gardenConfig } from './garden'
+import { fenceConfig } from './terrain'
+import { getPostEdge } from '../utils/fence'
+import { getWorldOffset } from '../utils/garden'
+
+export const pollenConfig = {
+  highCount: 200,
+  lowCount: 200,
+  minRadius: 0.01,
+  radiusSwing: 0.02,
+  minSpeed: 0.12,
+  speedSwing: 0.4,
+  opacity: 0.75,
+  minWander: 0.35,
+  wanderSwing: 1.1,
+  color: '#fff6dd',
+  centreHeight: 2.4,
+  spread: [gardenConfig.gridSize, 4, gardenConfig.gridSize] as [number, number, number],
+}
+
+export const butterflyConfig = {
+  highCount: 4,
+  lowCount: 2,
+  bodyColor: '#4a3d35',
+  wingColors: [
+    ['#f7ecff', '#b98fe0'],
+    ['#ff9dbf', '#e05a8c'],
+    ['#ffd66b', '#ec9c14'],
+    ['#b6cdf5', '#6b8fd6'],
+  ] as [string, string][],
+  homeSpread: 14,
+  minRadius: 2.5,
+  radiusSwing: 3.5,
+  minSpeed: 0.2,
+  speedSwing: 0.14,
+  minHeight: 1,
+  heightSwing: 1.3,
+  flapRate: 6.5,
+  flapOpen: 0.35,
+  flapSwing: 1.05,
+  bobHeight: 0.3,
+  leanAngle: 0.18,
+  foreWing: { scale: [0.22, 0.008, 0.15] as [number, number, number], offset: [0.22, 0, 0.05] as [number, number, number] },
+  hindWing: { scale: [0.14, 0.008, 0.11] as [number, number, number], offset: [0.14, 0, -0.12] as [number, number, number] },
+  body: { radius: 0.018, length: 0.11 },
+}
+
+export const birdConfig = {
+  railHeight: fenceConfig.postHeight,
+  railDepth: getPostEdge(),
+  startX: getWorldOffset(9),
+  reach: 8,
+  hopGapSeconds: 9,
+  hopGapSwing: 7,
+  restChance: 0.45,
+  restSeconds: 14,
+  restSwing: 10,
+  hopSeconds: 0.62,
+  hopArc: 0.13,
+  minHopPosts: 1,
+  hopPostSwing: 3,
+  hopSecondsPerPost: 0.22,
+  hopArcPerPost: 0.09,
+  peckSeconds: 0.22,
+  peckRestSeconds: 1.1,
+  minPeckBurst: 1,
+  peckBurstSwing: 3,
+  peckStillSeconds: 7,
+  peckStillSwing: 6,
+  peckAngle: 0.5,
+  bodyColor: '#6b5a4e',
+  breastColor: '#c9552a',
+  beakColor: '#e09215',
+  tailColor: '#5c4d43',
+}
