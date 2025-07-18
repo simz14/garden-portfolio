@@ -18,6 +18,7 @@ import { WateringCan } from './objects/watering-can'
 import { Decor } from './objects/decor'
 import { Gardener } from './objects/gardener'
 import { HotspotRings } from './objects/hotspot-rings'
+import { Pollen } from './objects/pollen'
 import { Mailbox } from './objects/mailbox'
 import { Oak } from './objects/oak'
 import { Shed } from './objects/shed'
@@ -98,6 +99,7 @@ export function Scene() {
       <Gardener />
 
       <HotspotRings />
+      <Pollen />
     </>
   )
 }
