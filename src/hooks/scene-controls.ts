@@ -4,6 +4,7 @@ import type { RefObject } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { gardenerWalkConfig } from '../config/gardener'
 import { hoverConfig } from '../config/hotspots'
+import { pollenConfig } from '../config/ambience'
 import {
   cameraConfig,
   cameraFocusConfig,
@@ -206,5 +207,13 @@ export function useSceneControls(
     folder.addBinding(hoverConfig, 'lift', { label: 'hover lift', min: 0, max: 1.2, step: 0.05 })
     folder.addBinding(hoverConfig, 'seconds', { label: 'hover secs', min: 0.05, max: 1.5, step: 0.01 })
     folder.addBinding(hoverConfig, 'ringOpacity', { label: 'ring opacity', min: 0, max: 1, step: 0.05 })
+  })
+
+  useDebugFolder('Pollen', (folder) => {
+    folder.addBinding(pollenConfig, 'minSpeed', { label: 'min speed', min: 0, max: 2, step: 0.05 })
+    folder.addBinding(pollenConfig, 'speedSwing', { label: 'speed swing', min: 0, max: 2, step: 0.05 })
+    folder.addBinding(pollenConfig, 'opacity', { min: 0, max: 1, step: 0.05 })
+    folder.addBinding(pollenConfig, 'minWander', { label: 'min wander', min: 0, max: 3, step: 0.05 })
+    folder.addBinding(pollenConfig, 'wanderSwing', { label: 'wander swing', min: 0, max: 3, step: 0.05 })
   })
 }
