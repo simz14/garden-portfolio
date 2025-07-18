@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import type { DirectionalLight, HemisphereLight } from 'three'
 import { CameraControls, OrthographicCamera } from '@react-three/drei'
 import { cameraConfig, fogConfig, lightConfig, shadowConfig } from '../../config/scene'
@@ -8,6 +8,7 @@ import {
   useCameraHome,
   useCameraMoves,
 } from '../../hooks/camera'
+import { QualityLevel, useQualityLevel } from '../../hooks/quality'
 import { useWind } from '../../hooks/wind'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
@@ -23,6 +24,7 @@ import { Shed } from './objects/shed'
 import { useSceneControls } from '../../hooks/scene-controls'
 
 export function Scene() {
+  const qualityLevel = useQualityLevel()
   const sunRef = useRef<DirectionalLight>(null)
   const skyRef = useRef<HemisphereLight>(null)
 
@@ -30,6 +32,12 @@ export function Scene() {
   useCameraMoves()
   useCameraFollow()
   useWind()
+
+  const shadowMapSize =
+    qualityLevel === QualityLevel.High ? shadowConfig.highMapSize : shadowConfig.lowMapSize
+  useEffect(() => {
+    sunRef.current?.shadow.camera.updateProjectionMatrix()
+  }, [shadowMapSize])
   useSceneControls(sunRef, skyRef)
 
   return (
@@ -66,7 +74,7 @@ export function Scene() {
         intensity={lightConfig.directional.intensity}
         position={lightConfig.directional.position}
         castShadow
-        shadow-mapSize={[shadowConfig.highMapSize, shadowConfig.highMapSize]}
+        shadow-mapSize={[shadowMapSize, shadowMapSize]}
         shadow-camera-left={-shadowConfig.area}
         shadow-camera-right={shadowConfig.area}
         shadow-camera-top={shadowConfig.area}
