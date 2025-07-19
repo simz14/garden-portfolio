@@ -14,6 +14,7 @@ import {
 } from '../config/scene'
 import { useCameraControls, useSceneFog } from './camera'
 import { getDebugState, setDebugState } from './debug'
+import { getSky, setSky } from './sky'
 import { useDebugFolder } from './tweakpane'
 import { getFittedZoom } from '../utils/camera'
 
@@ -86,6 +87,31 @@ export function useSceneControls(
     folder
       .addBinding(cameraConfig, 'maxFitHeight', { label: 'fit height max', min: 12, max: 90, step: 0.5 })
       .on('change', applyCamera)
+  })
+
+  useDebugFolder('Sky', (folder) => {
+    const sky = { ...getSky() }
+
+    const colors = [
+      ['horizonColor', 'horizon'],
+      ['hazeColor', 'haze'],
+      ['midColor', 'mid'],
+      ['topColor', 'top'],
+    ] as const
+
+    for (const [key, label] of colors) {
+      folder
+        .addBinding(sky, key, { label, view: 'color' })
+        .on('change', (event) => setSky({ [key]: event.value }))
+    }
+
+    folder
+      .addBinding(sky, 'hazeStop', { label: 'haze at', min: 0.05, max: 0.9, step: 0.01 })
+      .on('change', (event) => setSky({ hazeStop: event.value }))
+
+    folder
+      .addBinding(sky, 'midStop', { label: 'mid at', min: 0.1, max: 0.95, step: 0.01 })
+      .on('change', (event) => setSky({ midStop: event.value }))
   })
 
   useDebugFolder('Fog', (folder) => {
