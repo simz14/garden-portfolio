@@ -55,3 +55,11 @@ export const groundTextureConfig = {
   size: 2048,
   bladeCount: 24000,
 }
+
+export const skyConfig = {
+  stops: [0, 0.32, 0.62, 1],
+  horizonColor: '#e4ba8e',
+  hazeColor: '#e4dbc6',
+  midColor: '#8cbbdd',
+  topColor: '#659df0',
+}

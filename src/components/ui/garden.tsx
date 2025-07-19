@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
 import { KeyboardControls, PerformanceMonitor } from '@react-three/drei'
@@ -7,14 +7,24 @@ import { keyboardMap } from '../../config/controls'
 import { physicsConfig, rendererConfig } from '../../config/scene'
 import { QualityLevel, setQualityLevel } from '../../hooks/quality'
 import { ResourcesProvider } from '../../context/resources'
+import { useSky } from '../../hooks/sky'
+import { createSkyGradient } from '../../utils/sky'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
+  const sky = useSky()
+  // the sky is the section's own background rather than anything in the scene:
+  // the canvas is transparent, so the ramp always covers the screen whatever the
+  // camera does, and it is already painted before webgl draws its first frame
+  const skyGradient = useMemo(() => createSkyGradient(sky), [sky])
   const [pixelRatio, setPixelRatio] = useState(rendererConfig.highPixelRatio)
 
   return (
     <KeyboardControls map={keyboardMap}>
-      <section className="relative h-svh w-full overflow-hidden">
+      <section
+        className="relative h-svh min-h-140 w-full overflow-hidden"
+        style={{ background: skyGradient }}
+      >
         <Canvas
           shadows="percentage"
           dpr={pixelRatio}
