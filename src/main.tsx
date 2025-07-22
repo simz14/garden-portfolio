@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import './style.css'
+import './i18n'
 import './node-materials'
 import { App } from './App'
 

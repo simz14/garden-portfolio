@@ -1,0 +1,36 @@
+{
+  "close": "Close",
+  "back": "Garden",
+  "contact": {
+    "github": "GitHub"
+  },
+  "zones": {
+    "projects": {
+      "name": "Projects",
+      "title": "The beds",
+      "body": "One raised bed per project, planted in its own palette so the work reads as one collection from the air."
+    },
+    "about": {
+      "name": "About me",
+      "title": "The old oak",
+      "body": "Frontend developer. React, Next.js and TypeScript - interfaces that feel effortless, ship quickly and hold up in production. The bench under the canopy is where the long problems get solved."
+    },
+    "tech": {
+      "name": "Technologies",
+      "title": "The potting shed",
+      "body": "Every tool on the rack is part of the stack - the things I reach for without thinking about them."
+    },
+    "contact": {
+      "name": "Contact",
+      "title": "The mailbox",
+      "body": "Flag up, door open. Have a project, a role or just a question? I usually reply within a day."
+    }
+  },
+  "greeting": {
+    "title": "Hi, I'm Simona 👋",
+    "body": "Welcome to my garden. Use the arrow keys to walk me around, and click a marker to open that part of it.",
+    "bodyTouch": "Welcome to my garden. Use the stick to walk me around, and tap a marker to open that part of it."
+  },
+  "enterKey": "↵ Enter",
+  "tapKey": "Tap"
+}

@@ -1,0 +1,36 @@
+{
+  "close": "Zavrieť",
+  "back": "Záhrada",
+  "contact": {
+    "github": "GitHub"
+  },
+  "zones": {
+    "projects": {
+      "name": "Projekty",
+      "title": "Záhony",
+      "body": "Jeden vyvýšený záhon na projekt, každý vysadený vlastnou paletou - zhora tak práca pôsobí ako jeden celok."
+    },
+    "about": {
+      "name": "O mne",
+      "title": "Starý dub",
+      "body": "Frontend vývojárka. React, Next.js a TypeScript - rozhrania, ktoré pôsobia ľahko, vznikajú rýchlo a obstoja v produkcii. Na lavičke pod korunou sa riešia tie dlhé problémy."
+    },
+    "tech": {
+      "name": "Technológie",
+      "title": "Skleník",
+      "body": "Každý nástroj na stojane patrí do stacku - veci, po ktorých siaham bez rozmýšľania."
+    },
+    "contact": {
+      "name": "Kontakt",
+      "title": "Poštová schránka",
+      "body": "Vlajka hore, dvierka otvorené. Máte projekt, pozíciu alebo len otázku? Zvyčajne odpovedám do jedného dňa."
+    }
+  },
+  "greeting": {
+    "title": "Ahoj, ja som Simona 👋",
+    "body": "Vitajte v mojej záhrade. Šípkami ma prevediete a kliknutím na značku otvoríte jej časť.",
+    "bodyTouch": "Vitajte v mojej záhrade. Páčkou ma prevediete a ťuknutím na značku otvoríte jej časť."
+  },
+  "enterKey": "↵ Enter",
+  "tapKey": "Ťuknite"
+}
