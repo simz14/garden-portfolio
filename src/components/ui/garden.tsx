@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
-import { KeyboardControls, PerformanceMonitor } from '@react-three/drei'
+import { KeyboardControls, PerformanceMonitor, Preload, Stats } from '@react-three/drei'
 import { Physics } from '@react-three/rapier'
 import { keyboardMap } from '../../config/controls'
 import { physicsConfig, rendererConfig } from '../../config/scene'
@@ -68,6 +68,8 @@ export function Garden() {
               >
                 <Scene />
               </Physics>
+              <Preload all />
+              {debug.isFpsVisible && <Stats />}
             </ResourcesProvider>
           </Canvas>
         </div>

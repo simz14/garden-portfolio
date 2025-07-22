@@ -36,6 +36,10 @@ export function useSceneControls(
     const toggles = getDebugState()
 
     folder
+      .addBinding(toggles, 'isFpsVisible', { label: 'show fps' })
+      .on('change', (event) => setDebugState({ isFpsVisible: event.value }))
+
+    folder
       .addBinding(toggles, 'isPhysicsVisible', { label: 'physics wireframe' })
       .on('change', (event) => setDebugState({ isPhysicsVisible: event.value }))
 
