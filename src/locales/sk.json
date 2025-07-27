@@ -44,5 +44,18 @@
     "bodyTouch": "Vitajte v mojej záhrade. Páčkou ma prevediete a ťuknutím na značku otvoríte jej časť."
   },
   "enterKey": "↵ Enter",
-  "tapKey": "Ťuknite"
+  "tapKey": "Ťuknite",
+  "tumble": {
+    "falling": [
+      "Ale nieeeee 😱",
+      "Juchúúú— nie, počkať! 😩",
+      "Toto v pláne nebolo! 🙃"
+    ],
+    "recovered": [
+      "Dobre. O tomto nehovoríme. 😌",
+      "Zem mi chýbala, tak som sa vrátila. 🌱",
+      "Tak lietať teda neviem. Zapísané. 📝",
+      "Druhýkrát je to výskum, nie nešikovnosť. 🔬"
+    ]
+  }
 }

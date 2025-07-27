@@ -44,5 +44,17 @@
     "bodyTouch": "Welcome to my garden. Use the stick to walk me around, and tap a marker to open that part of it."
   },
   "enterKey": "↵ Enter",
-  "tapKey": "Tap"
+  "tapKey": "Tap",
+  "tumble": {
+    "falling": [
+      "Ohhh noooooo",
+      "Wheeeee— wait, no!",
+      "This was not in the plan!"
+    ],
+    "recovered": [
+      "Okay. We do not speak of that.",
+      "Turns out I cannot fly. Noted.",
+      "You though i wouldn't come back?"
+    ]
+  }
 }

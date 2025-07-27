@@ -3,6 +3,7 @@ import type { Group } from 'three'
 import { gardenerConfig } from '../../../config/gardener'
 import { useGardenerActions } from '../../../hooks/gardener'
 import { GardenerTalk } from '../labels/gardener-talk'
+import { GardenerTumble } from '../labels/gardener-tumble'
 import { Body } from './gardener/body'
 import type { GardenerParts } from './gardener/body'
 
@@ -28,6 +29,7 @@ export function Gardener() {
 
       <group scale={1 / gardenerConfig.scale}>
         <GardenerTalk />
+        <GardenerTumble />
       </group>
     </group>
   )
