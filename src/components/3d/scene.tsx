@@ -10,6 +10,7 @@ import {
 } from '../../hooks/camera'
 import { QualityLevel, useQualityLevel } from '../../hooks/quality'
 import { useWind } from '../../hooks/wind'
+import { BedLabels } from './labels/bed-labels'
 import { HotspotMarkers } from './labels/hotspot-markers'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
@@ -107,6 +108,7 @@ export function Scene() {
       <Bird />
 
       <HotspotMarkers />
+      <BedLabels />
     </>
   )
 }
