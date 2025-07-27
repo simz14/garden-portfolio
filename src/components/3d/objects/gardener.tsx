@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import type { Group } from 'three'
 import { gardenerConfig } from '../../../config/gardener'
 import { useGardenerActions } from '../../../hooks/gardener'
+import { GardenerTalk } from '../labels/gardener-talk'
 import { Body } from './gardener/body'
 import type { GardenerParts } from './gardener/body'
 
@@ -23,6 +24,10 @@ export function Gardener() {
           the body lean live one level in, where they cannot fight the fall. */}
       <group ref={bodyRef}>
         <Body ref={partsRef} />
+      </group>
+
+      <group scale={1 / gardenerConfig.scale}>
+        <GardenerTalk />
       </group>
     </group>
   )

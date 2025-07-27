@@ -1,6 +1,18 @@
 {
   "close": "Zavrieť",
   "back": "Záhrada",
+  "about": {
+    "follow": "Sledovať ↓",
+    "speech": [
+      "Ahoj! Volám sa Simona Zozuľaková a mám {{age}} rokov. Programujem od strednej školy.",
+      "Som frontend vývojárka s viac ako 3 rokmi komerčnej praxe - vyvíjam produkčné webové aplikácie v Reacte, Next.js a TypeScripte.",
+      "Nerobí mi problém ani zvyšok stacku: typované API vrstvy, GraphQL či služby v Node.",
+      "Mám za sebou rozsiahle multi-tenant dashboardy, dizajnové systémy aj produkty s dôrazom na lokalizáciu.",
+      "Som zvyknutá komunikovať priamo s klientmi a ich požiadavky aj nahlásené chyby dotiahnuť až do nasadenej verzie.",
+      "Plánovanie úloh, riadenie vývojových procesov a zodpovednosť za to, čo postavím, sú pre mňa rovnako dôležité ako samotný kód.",
+      "Momentálne som otvorená frontend pozíciám, kde môžem prispieť, rásť ako vývojárka a ďalej stavať zmysluplné veci."
+    ]
+  },
   "contact": {
     "github": "GitHub"
   },

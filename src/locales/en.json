@@ -1,6 +1,18 @@
 {
   "close": "Close",
   "back": "Garden",
+  "about": {
+    "follow": "Follow along ↓",
+    "speech": [
+      "Hey! My name si Simona Zozuľaková and i am {{age}}. I've been programming since high school.",
+      "I'm a frontend developer with 3+ years of commercial experience, building production web applications in React, Next.js and TypeScript.",
+      "I'm comfortable across the rest of the stack too - typed API layers, GraphQL and Node services.",
+      "I've been working on large multi-tenant dashboards, design systems and heavily localised products.",
+      "I'm used to talking to clients directly, translating their feature requests and bug reports into shipped work.",
+      "Planning tasks, keeping the development workflow moving and taking ownership of what I build matter to me as much as the code itself.",
+      "Right now I'm open to frontend roles, where I can contribute, grow as a developer and keep building meaningful things."
+    ]
+  },
   "contact": {
     "github": "GitHub"
   },
