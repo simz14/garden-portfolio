@@ -10,6 +10,7 @@ import { ResourcesProvider } from '../../context/resources'
 import { useIsSectionActive } from '../../hooks/visibility'
 import { useSky } from '../../hooks/sky'
 import { createSkyGradient } from '../../utils/sky'
+import { BackButton } from './back-button'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
@@ -73,6 +74,8 @@ export function Garden() {
             </ResourcesProvider>
           </Canvas>
         </div>
+
+        <BackButton />
       </section>
     </KeyboardControls>
   )
