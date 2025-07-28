@@ -1,6 +1,37 @@
 {
   "close": "Zavrieť",
   "back": "Záhrada",
+  "projects": {
+    "personal": "Osobný",
+    "live": "Živá stránka",
+    "code": "Zdrojový kód",
+    "items": {
+      "quant-affiliate": {
+        "title": "Quant Technology - Affiliate systém",
+        "description": "Obojstranný referral modul v multi-tenant prop-tradingovom dashboarde: traderi si podajú žiadosť o partnerstvo a následne získajú referral a kupónové kódy, provízie aj možnosť požiadať o výplatu. Admini danej značky partnerov schvaľujú či pozastavujú, nastavujú úrovne, provízne sadzby a ochranné lehoty, spúšťajú kampane, sledujú analytiku a formulár žiadosti si poskladajú v drag-and-drop builderi. Všetko prechádza jednou typovanou service vrstvou, ktorej hranice API stráži Zod. Volajú ju loadery a približne päťdesiat resource-route akcií."
+      },
+      "monevis": {
+        "title": "Monevis",
+        "description": "Marketingový web prop-tradingovej firmy: cenník a challenge plány, výplaty naživo, rebríček, overenie certifikátov a blog - v šestnástich jazykoch a nasadené z Turborepa so zdieľaným UI balíkom."
+      },
+      "monevis-platform": {
+        "title": "Monevis Platform",
+        "description": "Klientský dashboard, ktorý stojí za Monevisom: obchodné účty, žiadosti o výplatu, overenie totožnosti, rebríčky, certifikáty a fakturácia - GraphQL aplikácia s generovanými typmi, komponentmi v Storybooku a testami v Playwrighte."
+      },
+      "happy-tails": {
+        "title": "HappyTails",
+        "description": "Verejná stránka psieho útulku: návštevníci si prezerajú psíkov, ktorí hľadajú domov, posielajú žiadosti o adopciu, prispievajú alebo sa jednoducho ozvú - a personál medzitým posúva adopcie ďalej."
+      },
+      "doggy-board": {
+        "title": "DoggyBoard",
+        "description": "Admin dashboard na vedenie psieho útulku - psíkovia, adopcie, príspevky a médiá na jednom mieste. Grafy zhrnú, ako na tom útulok je, a každý záznam sa dá upraviť cez validované formuláre."
+      },
+      "green-bay": {
+        "title": "greenBay",
+        "description": "Trhovisko v štýle eBayu s používateľskými účtami, filtrovaním podľa kategórie a ceny, košíkom, objednávkou a inzerátmi, ktoré si viete sami vystaviť na predaj - postavené na Node a MySQL API."
+      }
+    }
+  },
   "about": {
     "follow": "Sledovať ↓",
     "speech": [

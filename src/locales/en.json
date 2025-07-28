@@ -1,6 +1,37 @@
 {
   "close": "Close",
   "back": "Garden",
+  "projects": {
+    "personal": "Personal",
+    "live": "Live site",
+    "code": "Source",
+    "items": {
+      "quant-affiliate": {
+        "title": "Quant Technology - Affiliate System",
+        "description": "A two-sided referral module inside a multi-tenant prop-trading dashboard: traders apply to become partners, then get referral and coupon codes, commissions and payout requests. Tenant admins approve or suspend partners, set tiers, commission rates and grace periods, run campaigns, read analytics and assemble the application form in a drag-and-drop builder. Everything routes through one typed service layer with Zod-validated API boundaries, consumed by loaders and around fifty resource-route actions."
+      },
+      "monevis": {
+        "title": "Monevis",
+        "description": "The marketing site for a prop-trading firm: pricing and challenge plans, live payouts, a leaderboard, certificate lookup and a blog - localised into sixteen languages and shipped from a Turborepo with a shared UI package."
+      },
+      "monevis-platform": {
+        "title": "Monevis Platform",
+        "description": "The trader dashboard behind Monevis: trading accounts and terminals, payout requests, identity verification, rankings, certificates and billing - a GraphQL client app with generated types, Storybook components and Playwright coverage."
+      },
+      "happy-tails": {
+        "title": "HappyTails",
+        "description": "The public face of a dog shelter: visitors browse dogs looking for a home, send adoption requests, donate and get in touch - while staff keep the adoption pipeline moving."
+      },
+      "doggy-board": {
+        "title": "DoggyBoard",
+        "description": "An admin dashboard for running a dog shelter - dogs, adoptions, donations and media in one place. Charts summarise where the shelter stands, and every record is editable through validated forms."
+      },
+      "green-bay": {
+        "title": "greenBay",
+        "description": "An eBay-style marketplace with accounts, category and price filtering, a cart, checkout and listings you can put up for sale yourself - backed by a Node and MySQL API."
+      }
+    }
+  },
   "about": {
     "follow": "Follow along ↓",
     "speech": [

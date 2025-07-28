@@ -11,6 +11,7 @@ import { useIsSectionActive } from '../../hooks/visibility'
 import { useSky } from '../../hooks/sky'
 import { createSkyGradient } from '../../utils/sky'
 import { BackButton } from './back-button'
+import { ProjectsPanel } from './projects-panel'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
@@ -76,6 +77,7 @@ export function Garden() {
         </div>
 
         <BackButton />
+        <ProjectsPanel />
       </section>
     </KeyboardControls>
   )
