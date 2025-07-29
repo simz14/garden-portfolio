@@ -7,6 +7,7 @@ import {
   useCameraFollow,
   useCameraHome,
   useCameraMoves,
+  useCameraViewPreset,
 } from '../../hooks/camera'
 import { QualityLevel, useQualityLevel } from '../../hooks/quality'
 import { useWind } from '../../hooks/wind'
@@ -35,6 +36,7 @@ export function Scene() {
   const skyRef = useRef<HemisphereLight>(null)
 
   useCameraHome()
+  useCameraViewPreset()
   useCameraMoves()
   useCameraFollow()
   useWind()

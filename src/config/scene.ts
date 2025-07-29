@@ -18,6 +18,34 @@ export const cameraConfig = {
   smoothTime: 0.35,
 }
 
+export enum CameraView {
+  Isometric = 'isometric',
+  Top = 'top',
+}
+
+interface CameraViewPreset {
+  polarAngle: number
+  topPolarAngle: number
+  azimuth: number
+  azimuthRange: number
+}
+
+export const cameraViewConfig: Record<CameraView, CameraViewPreset> = {
+  [CameraView.Isometric]: {
+    polarAngle: cameraConfig.polarAngle,
+    topPolarAngle: cameraConfig.topPolarAngle,
+    azimuth: cameraConfig.azimuth,
+    azimuthRange: cameraConfig.azimuthRange,
+  },
+  // straight down and square to the grid, so the island reads as a square
+  [CameraView.Top]: {
+    polarAngle: 0.02,
+    topPolarAngle: 0.02,
+    azimuth: 0,
+    azimuthRange: 0,
+  },
+}
+
 export const cameraFocusConfig = {
   durationSeconds: 1.1,
   polarAngle: Math.PI / 2 - Math.PI / 9,

@@ -3,7 +3,8 @@ import { Fog, OrthographicCamera, Vector3 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { CameraControlsImpl } from '@react-three/drei'
 import type { CameraControls } from '@react-three/drei'
-import { cameraConfig, cameraFollowConfig } from '../config/scene'
+import { cameraConfig, cameraFollowConfig, cameraViewConfig } from '../config/scene'
+import { useCameraView } from './camera-view'
 import { createFocusTimeline } from '../animations/camera'
 import { getFittedZoom, getHomePosition } from '../utils/camera'
 import { getSmoothingFactor } from '../utils/motion'
@@ -30,6 +31,26 @@ export function getIsCameraDragging() {
 
 export function useCameraControls() {
   return useThree((state) => state.controls) as CameraControls | null
+}
+
+export function useCameraViewPreset() {
+  const controls = useCameraControls()
+  const view = useCameraView()
+
+  useEffect(() => {
+    if (!controls) {
+      return
+    }
+
+    const preset = cameraViewConfig[view]
+
+    controls.minPolarAngle = preset.topPolarAngle
+    controls.maxPolarAngle = preset.polarAngle
+    controls.minAzimuthAngle = preset.azimuth - preset.azimuthRange
+    controls.maxAzimuthAngle = preset.azimuth + preset.azimuthRange
+
+    controls.rotateTo(preset.azimuth, preset.polarAngle, true)
+  }, [controls, view])
 }
 
 export function useCameraMoves() {
@@ -75,11 +96,6 @@ export function useCameraHome() {
     controls.mouseButtons.right = CameraControlsImpl.ACTION.NONE
     controls.touches.two = CameraControlsImpl.ACTION.NONE
     controls.touches.three = CameraControlsImpl.ACTION.NONE
-
-    controls.minPolarAngle = cameraConfig.topPolarAngle
-    controls.maxPolarAngle = cameraConfig.polarAngle
-    controls.minAzimuthAngle = cameraConfig.azimuth - cameraConfig.azimuthRange
-    controls.maxAzimuthAngle = cameraConfig.azimuth + cameraConfig.azimuthRange
 
     const [x, y, z] = getHomePosition()
     const [targetX, targetY, targetZ] = cameraConfig.target
