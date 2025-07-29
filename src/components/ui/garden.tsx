@@ -7,10 +7,12 @@ import { keyboardMap } from '../../config/controls'
 import { physicsConfig, rendererConfig } from '../../config/scene'
 import { QualityLevel, setQualityLevel } from '../../hooks/quality'
 import { ResourcesProvider } from '../../context/resources'
+import { useIsTouch } from '../../hooks/device'
 import { useIsSectionActive } from '../../hooks/visibility'
 import { useSky } from '../../hooks/sky'
 import { createSkyGradient } from '../../utils/sky'
 import { BackButton } from './back-button'
+import { Thumbstick } from './thumbstick'
 import { ProjectsPanel } from './projects-panel'
 import { TechDrawer } from './tech-drawer'
 import { Scene } from '../3d/scene'
@@ -23,6 +25,9 @@ export function Garden() {
   // the canvas is transparent, so the ramp always covers the screen whatever the
   // camera does, and it is already painted before webgl draws its first frame
   const skyGradient = useMemo(() => createSkyGradient(sky), [sky])
+  const isReady = useGarden((state) => state.isReady)
+  const selected = useGarden((state) => state.selected)
+
   const [pixelRatio, setPixelRatio] = useState(rendererConfig.highPixelRatio)
 
   return (
@@ -78,6 +83,7 @@ export function Garden() {
         </div>
 
         <BackButton />
+        {isTouch && <Thumbstick isHidden={!isReady || selected !== null} />}
         <ProjectsPanel />
         <TechDrawer />
       </section>
