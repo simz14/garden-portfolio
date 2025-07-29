@@ -12,6 +12,7 @@ import { useIsSectionActive } from '../../hooks/visibility'
 import { useSky } from '../../hooks/sky'
 import { createSkyGradient } from '../../utils/sky'
 import { BackButton } from './back-button'
+import { Intro } from './intro'
 import { Thumbstick } from './thumbstick'
 import { ProjectsPanel } from './projects-panel'
 import { TechDrawer } from './tech-drawer'
@@ -82,6 +83,7 @@ export function Garden() {
           </Canvas>
         </div>
 
+        <Intro />
         <BackButton />
         {isTouch && <Thumbstick isHidden={!isReady || selected !== null} />}
         <ProjectsPanel />

@@ -1,4 +1,10 @@
 {
+  "label": "Interaktívne",
+  "title": "Záhrada, ktorou sa prechádzate, namiesto stránky, ktorú scrollujete.",
+  "subtitle": "Celé portfólio ako jedna WebGL scéna - záhony projektov, starý dub, skleník a poštová schránka pri bráne.",
+  "hint": "Kliknite na značku a otvorte časť záhrady. Ťahaním sa rozhliadnete, šípkami vodíte záhradníčku.",
+  "hintTouch": "Ťuknite na značku a otvorte časť záhrady. Potiahnutím sa rozhliadnete, páčkou vodíte záhradníčku.",
+  "enter": "Vstúpiť do záhrady",
   "close": "Zavrieť",
   "back": "Záhrada",
   "projects": {

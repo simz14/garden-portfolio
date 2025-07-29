@@ -61,6 +61,16 @@ export const cameraFollowConfig = {
   minAxisGain: 0.05,
 }
 
+export const introConfig = {
+  durationSeconds: 3.2,
+  reducedDurationSeconds: 0.8,
+  distance: 92,
+  zoom: 0.34,
+  fogNearRatio: 0.55,
+  fogFarRatio: 0.95,
+  fogColor: '#ffffff',
+}
+
 export const lightConfig = {
   hemisphere: {
     skyColor: '#cfe3f2',

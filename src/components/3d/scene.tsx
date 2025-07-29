@@ -9,6 +9,7 @@ import {
   useCameraMoves,
   useCameraViewPreset,
 } from '../../hooks/camera'
+import { useGarden } from '../../hooks/garden'
 import { QualityLevel, useQualityLevel } from '../../hooks/quality'
 import { useWind } from '../../hooks/wind'
 import { BedLabels } from './labels/bed-labels'
@@ -32,6 +33,7 @@ import { useSceneControls } from '../../hooks/scene-controls'
 
 export function Scene() {
   const qualityLevel = useQualityLevel()
+  const hasEntered = useGarden((state) => state.hasEntered)
   const sunRef = useRef<DirectionalLight>(null)
   const skyRef = useRef<HemisphereLight>(null)
 
@@ -93,22 +95,26 @@ export function Scene() {
         shadow-normalBias={shadowConfig.normalBias}
       />
 
-      <Ground />
-      <Path />
-      <Fence />
+      {hasEntered && (
+        <>
+          <Ground />
+          <Path />
+          <Fence />
 
-      <Oak />
-      <Shed />
-      <Beds />
-      <WateringCan />
-      <Mailbox />
-      <Decor />
-      <Gardener />
+          <Oak />
+          <Shed />
+          <Beds />
+          <WateringCan />
+          <Mailbox />
+          <Decor />
+          <Gardener />
 
-      <HotspotRings />
-      <Pollen />
-      <Butterflies />
-      <Bird />
+          <HotspotRings />
+          <Pollen />
+          <Butterflies />
+          <Bird />
+        </>
+      )}
 
       <HotspotMarkers />
       <BedLabels />

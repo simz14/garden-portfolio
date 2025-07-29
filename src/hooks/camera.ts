@@ -3,24 +3,18 @@ import { Fog, OrthographicCamera, Vector3 } from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { CameraControlsImpl } from '@react-three/drei'
 import type { CameraControls } from '@react-three/drei'
+import { createFocusTimeline, createIntroTimeline } from '../animations/camera'
 import { cameraConfig, cameraFollowConfig, cameraViewConfig } from '../config/scene'
 import { useCameraView } from './camera-view'
-import { createFocusTimeline } from '../animations/camera'
-import { getFittedZoom, getHomePosition } from '../utils/camera'
+import { getFittedZoom } from '../utils/camera'
 import { getSmoothingFactor } from '../utils/motion'
-import { useGarden } from './garden'
+import { useIsReducedMotion } from './device'
+import { Tumble, setGarden, useGarden } from './garden'
 import { getGardenerPosition } from './gardener-position'
-
-export function useSceneFog() {
-  const scene = useThree((state) => state.scene)
-
-  return scene.fog instanceof Fog ? scene.fog : null
-}
 
 let isCameraDragging = false
 let focusTween: gsap.core.Tween | null = null
 
-// a drag that ends on a hotspot should not read as a click on it
 export function setIsCameraDragging(isDragging: boolean) {
   isCameraDragging = isDragging
 }
@@ -31,6 +25,32 @@ export function getIsCameraDragging() {
 
 export function useCameraControls() {
   return useThree((state) => state.controls) as CameraControls | null
+}
+
+export function useSceneFog() {
+  const scene = useThree((state) => state.scene)
+
+  return scene.fog instanceof Fog ? scene.fog : null
+}
+
+export function useCameraHome() {
+  const controls = useCameraControls()
+
+  useEffect(() => {
+    if (!controls) {
+      return
+    }
+
+    controls.mouseButtons.wheel = CameraControlsImpl.ACTION.NONE
+    controls.mouseButtons.middle = CameraControlsImpl.ACTION.NONE
+    controls.mouseButtons.right = CameraControlsImpl.ACTION.NONE
+    controls.touches.two = CameraControlsImpl.ACTION.NONE
+    controls.touches.three = CameraControlsImpl.ACTION.NONE
+
+    const [x, y, z] = cameraConfig.target
+
+    controls.setTarget(x, y, z, false)
+  }, [controls])
 }
 
 export function useCameraViewPreset() {
@@ -57,10 +77,29 @@ export function useCameraMoves() {
   const controls = useCameraControls()
   const fog = useSceneFog()
   const size = useThree((state) => state.size)
+  const isReducedMotion = useIsReducedMotion()
+  const hasEntered = useGarden((state) => state.hasEntered)
+  const isReady = useGarden((state) => state.isReady)
   const selected = useGarden((state) => state.selected)
 
   useEffect(() => {
-    const canFocus = controls !== null && fog !== null
+    const canPlayIntro = controls !== null && fog !== null && hasEntered
+
+    if (!canPlayIntro) {
+      return
+    }
+
+    const tween = createIntroTimeline(controls, fog, size, isReducedMotion, () => {
+      setGarden({ isReady: true })
+    })
+
+    return function killIntro() {
+      tween.kill()
+    }
+  }, [controls, fog, hasEntered])
+
+  useEffect(() => {
+    const canFocus = controls !== null && fog !== null && isReady
 
     if (!canFocus) {
       return
@@ -77,32 +116,16 @@ export function useCameraMoves() {
         focusTween = null
       }
     }
-  }, [controls, fog, selected])
-}
-
-// drop the camera on its isometric perch once, everything after that is a move
-// away from home rather than a fresh placement
-export function useCameraHome() {
-  const controls = useCameraControls()
-  const size = useThree((state) => state.size)
-
+  }, [controls, fog, isReady, selected])
   useEffect(() => {
-    if (!controls) {
+    const shouldRefit = controls !== null && isReady && selected === null
+
+    if (!shouldRefit) {
       return
     }
 
-    controls.mouseButtons.wheel = CameraControlsImpl.ACTION.NONE
-    controls.mouseButtons.middle = CameraControlsImpl.ACTION.NONE
-    controls.mouseButtons.right = CameraControlsImpl.ACTION.NONE
-    controls.touches.two = CameraControlsImpl.ACTION.NONE
-    controls.touches.three = CameraControlsImpl.ACTION.NONE
-
-    const [x, y, z] = getHomePosition()
-    const [targetX, targetY, targetZ] = cameraConfig.target
-
-    controls.setLookAt(x, y, z, targetX, targetY, targetZ, false)
     controls.zoomTo(getFittedZoom(size.width, size.height), false)
-  }, [controls, size])
+  }, [controls, isReady, selected, size])
 }
 
 const followTarget = new Vector3()
@@ -117,18 +140,18 @@ function getExcess(screen: number, limit: number) {
   return Math.sign(screen) * Math.max(0, Math.abs(screen) - limit)
 }
 
-// the camera only budges once she leaves a generous middle box, so small steps
-// never drag the whole garden around under her feet
 export function useCameraFollow() {
   const controls = useCameraControls()
   const size = useThree((state) => state.size)
+  const isReady = useGarden((state) => state.isReady)
   const selected = useGarden((state) => state.selected)
+  const tumble = useGarden((state) => state.tumble)
 
   useFrame(({ camera }, rawDelta) => {
     const isFocusing = focusTween !== null && focusTween.isActive()
     const canFollow =
-      controls !== null && selected === null && !isFocusing &&
-      camera instanceof OrthographicCamera
+      controls !== null && isReady && selected === null && !isFocusing &&
+      tumble !== Tumble.Falling && camera instanceof OrthographicCamera
 
     if (!canFollow) {
       return

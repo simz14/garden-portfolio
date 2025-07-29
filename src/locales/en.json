@@ -1,4 +1,10 @@
 {
+  "label": "Interactive",
+  "title": "A garden you walk through instead of a page you scroll.",
+  "subtitle": "The whole portfolio as one WebGL scene - project beds, an old oak, a potting shed and a mailbox by the gate.",
+"hint": "Walk the gardener with the arrow keys, then press Enter to open it - or just click the marker. Drag to look around.",
+"hintTouch": "Walk the gardener with the stick, then tap a marker to open it. Swipe to look around.",
+  "enter": "Enter the garden",
   "close": "Close",
   "back": "Garden",
   "projects": {

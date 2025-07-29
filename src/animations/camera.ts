@@ -1,10 +1,10 @@
 import { gsap } from 'gsap'
-import { Vector3 } from 'three'
+import { Color, Vector3 } from 'three'
 import type { Fog } from 'three'
 import type { CameraControls } from '@react-three/drei'
 import { hotspotConfig } from '../config/hotspots'
 import type { HotspotId } from '../config/hotspots'
-import { fogConfig, cameraConfig, cameraFocusConfig } from '../config/scene'
+import { fogConfig, cameraConfig, cameraFocusConfig, introConfig } from '../config/scene'
 import { getFittedZoom } from '../utils/camera'
 
 interface Viewport {
@@ -12,7 +12,52 @@ interface Viewport {
   height: number
 }
 
+const introColor = new Color(introConfig.fogColor)
+const settledColor = new Color(fogConfig.fogColor)
 const targetVector = new Vector3()
+
+export function createIntroTimeline(
+  controls: CameraControls,
+  fog: Fog,
+  viewport: Viewport,
+  isReducedMotion: boolean,
+  onDone: () => void,
+) {
+  const settledZoom = getFittedZoom(viewport.width, viewport.height)
+  const state = { progress: 0 }
+
+  controls.dollyTo(cameraConfig.distance + introConfig.distance, false)
+  controls.zoomTo(introConfig.zoom, false)
+
+  return gsap.to(state, {
+    progress: 1,
+    duration: isReducedMotion ? introConfig.reducedDurationSeconds : introConfig.durationSeconds,
+    ease: 'power3.out',
+    onUpdate() {
+      const distance = cameraConfig.distance + (1 - state.progress) * introConfig.distance
+
+      controls.dollyTo(distance, false)
+      controls.zoomTo(gsap.utils.interpolate(introConfig.zoom, settledZoom, state.progress), false)
+
+      fog.near =
+        distance *
+        gsap.utils.interpolate(
+          introConfig.fogNearRatio,
+          fogConfig.fogNear / cameraConfig.distance,
+          state.progress,
+        )
+      fog.far =
+        distance *
+        gsap.utils.interpolate(
+          introConfig.fogFarRatio,
+          fogConfig.fogFar / cameraConfig.distance,
+          state.progress,
+        )
+      fog.color.copy(introColor).lerp(settledColor, state.progress)
+    },
+    onComplete: onDone,
+  })
+}
 
 export function createFocusTimeline(
   controls: CameraControls,
