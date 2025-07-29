@@ -12,6 +12,7 @@ import { useSky } from '../../hooks/sky'
 import { createSkyGradient } from '../../utils/sky'
 import { BackButton } from './back-button'
 import { ProjectsPanel } from './projects-panel'
+import { TechDrawer } from './tech-drawer'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
@@ -78,6 +79,7 @@ export function Garden() {
 
         <BackButton />
         <ProjectsPanel />
+        <TechDrawer />
       </section>
     </KeyboardControls>
   )
