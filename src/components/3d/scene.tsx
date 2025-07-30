@@ -95,26 +95,27 @@ export function Scene() {
         shadow-normalBias={shadowConfig.normalBias}
       />
 
-      {hasEntered && (
-        <>
-          <Ground />
-          <Path />
-          <Fence />
+      {/* the intro sits on the empty sky -- the island still loads and compiles
+          behind it, it just stays off screen until she asks to enter */}
+      <group visible={hasEntered}>
+      <Ground />
+      <Path />
+      <Fence />
 
-          <Oak />
-          <Shed />
-          <Beds />
-          <WateringCan />
-          <Mailbox />
-          <Decor />
-          <Gardener />
+      <Oak />
+      <Shed />
+      <Beds />
+      <WateringCan />
+      <Mailbox />
+      <Decor />
+      <Gardener />
 
-          <HotspotRings />
-          <Pollen />
-          <Butterflies />
-          <Bird />
-        </>
-      )}
+      <HotspotRings />
+      <Pollen />
+      <Butterflies />
+      <Bird />
+    </>
+      </group>
 
       <HotspotMarkers />
       <BedLabels />
