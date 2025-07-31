@@ -6,6 +6,7 @@ import { gardenerWalkConfig } from '../config/gardener'
 import { hoverConfig } from '../config/hotspots'
 import { pollenConfig } from '../config/ambience'
 import {
+  CameraView,
   cameraConfig,
   cameraFocusConfig,
   fogConfig,
@@ -13,6 +14,7 @@ import {
   shadowConfig,
 } from '../config/scene'
 import { useCameraControls, useSceneFog } from './camera'
+import { getCameraView, setCameraView } from './camera-view'
 import { getDebugState, setDebugState } from './debug'
 import { getSky, setSky } from './sky'
 import { useDebugFolder } from './tweakpane'
@@ -49,6 +51,18 @@ export function useSceneControls(
   })
 
   useDebugFolder('Camera', (folder) => {
+    const view = { current: getCameraView() }
+
+    folder
+      .addBinding(view, 'current', {
+        label: 'view',
+        options: {
+          isometric: CameraView.Isometric,
+          'top down': CameraView.Top,
+        },
+      })
+      .on('change', (event) => setCameraView(event.value))
+
     function applyCamera() {
       const { controls, size } = sceneRef.current
 
