@@ -1,9 +1,9 @@
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { WebGPURenderer } from 'three/webgpu'
 import { KeyboardControls, PerformanceMonitor, Preload, Stats } from '@react-three/drei'
 import { Physics } from '@react-three/rapier'
-import { keyboardMap } from '../../config/controls'
+import { GardenControl, keyboardMap } from '../../config/controls'
 import { physicsConfig, rendererConfig } from '../../config/scene'
 import { QualityLevel, setQualityLevel } from '../../hooks/quality'
 import { ResourcesProvider } from '../../context/resources'
@@ -31,8 +31,42 @@ export function Garden() {
 
   const [pixelRatio, setPixelRatio] = useState(rendererConfig.highPixelRatio)
 
+  useEffect(() => resetGarden, [])
+
+  function handleControl(name: string, isPressed: boolean) {
+    if (!isPressed) {
+      return
+    }
+
+    if (name === GardenControl.Dismiss) {
+      selectHotspot(null)
+
+      return
+    }
+
+    if (!getGarden().isReady) {
+      return
+    }
+
+    if (name === GardenControl.Select) {
+      const nearby = getNearbyHotspot()
+
+      if (nearby) {
+        selectHotspot(nearby)
+      }
+
+      return
+    }
+
+    setGarden({ isGreeting: false })
+
+    if (getGarden().selected) {
+      selectHotspot(null)
+    }
+  }
+
   return (
-    <KeyboardControls map={keyboardMap}>
+    <KeyboardControls map={keyboardMap} onChange={handleControl}>
       <section
         className="relative h-svh min-h-140 w-full overflow-hidden"
         style={{ background: skyGradient }}
@@ -57,6 +91,11 @@ export function Garden() {
               return renderer
             }}
             frameloop={isActive ? 'always' : 'never'}
+            onPointerMissed={(event) => {
+              if (event.target instanceof HTMLCanvasElement) {
+                selectHotspot(null)
+              }
+            }}
           >
             <PerformanceMonitor
               onIncline={() => {
