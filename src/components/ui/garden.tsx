@@ -5,22 +5,28 @@ import { KeyboardControls, PerformanceMonitor, Preload, Stats } from '@react-thr
 import { Physics } from '@react-three/rapier'
 import { GardenControl, keyboardMap } from '../../config/controls'
 import { physicsConfig, rendererConfig } from '../../config/scene'
+import { getGarden, resetGarden, selectHotspot, setGarden, useGarden } from '../../hooks/garden'
+import { useHotspotRegistry } from '../../hooks/hotspots'
+import { useDebugState } from '../../hooks/debug'
 import { QualityLevel, setQualityLevel } from '../../hooks/quality'
 import { ResourcesProvider } from '../../context/resources'
 import { useIsTouch } from '../../hooks/device'
 import { useIsSectionActive } from '../../hooks/visibility'
 import { useSky } from '../../hooks/sky'
-import { createSkyGradient } from '../../utils/sky'
 import { BackButton } from './back-button'
 import { Intro } from './intro'
-import { Thumbstick } from './thumbstick'
 import { ProjectsPanel } from './projects-panel'
 import { TechDrawer } from './tech-drawer'
+import { Thumbstick } from './thumbstick'
+import { createSkyGradient } from '../../utils/sky'
 import { Scene } from '../3d/scene'
 
 export function Garden() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const isActive = useIsSectionActive(sectionRef)
+  const { getNearbyHotspot } = useHotspotRegistry()
+  const isTouch = useIsTouch()
+  const debug = useDebugState()
   const sky = useSky()
   // the sky is the section's own background rather than anything in the scene:
   // the canvas is transparent, so the ramp always covers the screen whatever the
@@ -112,7 +118,7 @@ export function Garden() {
               <Physics
                 gravity={physicsConfig.gravity}
                 timeStep={physicsConfig.timeStep}
-                debug={physicsConfig.isDebugVisible}
+                debug={debug.isPhysicsVisible}
               >
                 <Scene />
               </Physics>

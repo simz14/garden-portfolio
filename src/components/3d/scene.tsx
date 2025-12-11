@@ -11,25 +11,25 @@ import {
 } from '../../hooks/camera'
 import { useGarden } from '../../hooks/garden'
 import { QualityLevel, useQualityLevel } from '../../hooks/quality'
+import { useSceneControls } from '../../hooks/scene-controls'
 import { useWind } from '../../hooks/wind'
 import { BedLabels } from './labels/bed-labels'
-import { TechStack } from './labels/tech-stack'
 import { HotspotMarkers } from './labels/hotspot-markers'
+import { TechStack } from './labels/tech-stack'
 import { Fence } from './landscape/fence'
 import { Ground } from './landscape/ground'
 import { Path } from './landscape/path'
 import { Beds } from './objects/beds'
-import { WateringCan } from './objects/watering-can'
+import { Bird } from './objects/bird'
+import { Butterflies } from './objects/butterflies'
 import { Decor } from './objects/decor'
 import { Gardener } from './objects/gardener'
 import { HotspotRings } from './objects/hotspot-rings'
-import { Bird } from './objects/bird'
-import { Butterflies } from './objects/butterflies'
-import { Pollen } from './objects/pollen'
 import { Mailbox } from './objects/mailbox'
 import { Oak } from './objects/oak'
+import { Pollen } from './objects/pollen'
 import { Shed } from './objects/shed'
-import { useSceneControls } from '../../hooks/scene-controls'
+import { WateringCan } from './objects/watering-can'
 
 export function Scene() {
   const qualityLevel = useQualityLevel()
@@ -42,13 +42,13 @@ export function Scene() {
   useCameraMoves()
   useCameraFollow()
   useWind()
+  useSceneControls(sunRef, skyRef)
 
   const shadowMapSize =
     qualityLevel === QualityLevel.High ? shadowConfig.highMapSize : shadowConfig.lowMapSize
   useEffect(() => {
     sunRef.current?.shadow.camera.updateProjectionMatrix()
   }, [shadowMapSize])
-  useSceneControls(sunRef, skyRef)
 
   return (
     <>
@@ -98,23 +98,22 @@ export function Scene() {
       {/* the intro sits on the empty sky -- the island still loads and compiles
           behind it, it just stays off screen until she asks to enter */}
       <group visible={hasEntered}>
-      <Ground />
-      <Path />
-      <Fence />
+        <Ground />
+        <Path />
+        <Fence />
 
-      <Oak />
-      <Shed />
-      <Beds />
-      <WateringCan />
-      <Mailbox />
-      <Decor />
-      <Gardener />
+        <Oak />
+        <Shed />
+        <Beds />
+        <WateringCan />
+        <Mailbox />
+        <Decor />
+        <Gardener />
 
-      <HotspotRings />
-      <Pollen />
-      <Butterflies />
-      <Bird />
-    </>
+        <HotspotRings />
+        <Pollen />
+        <Butterflies />
+        <Bird />
       </group>
 
       <HotspotMarkers />
