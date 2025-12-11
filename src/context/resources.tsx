@@ -66,10 +66,10 @@ function createResources() {
     flowerMaterial,
     bladeMaterial,
     ground,
+    logoMaterial: track(new MeshLambertNodeMaterial({ vertexColors: true })),
     wireframeMaterial: track(
       new MeshBasicNodeMaterial({ color: resourceConfig.wireframeColor, wireframe: true }),
     ),
-    logoMaterial: track(new MeshLambertNodeMaterial({ vertexColors: true })),
     glassMaterial: track(
       new MeshLambertNodeMaterial({
         color: paletteConfig.glass,

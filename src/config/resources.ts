@@ -1,9 +1,9 @@
 export const resourceConfig = {
   windSpeed: 1.15,
   bladeColor: '#4b8a3c',
+  wireframeColor: '#ff4444',
   bladeWindStrength: 0.16,
   flowerWindStrength: 0.09,
-  wireframeColor: '#ff4444',
   glassOpacity: 0.42,
   ballSegments: [6, 5] as [number, number],
   leaf: { detail: 0, amount: 0.3, frequency: 3.4 },
