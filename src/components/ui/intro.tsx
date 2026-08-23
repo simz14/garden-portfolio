@@ -49,13 +49,7 @@ export function Intro() {
         hasEntered ? 'pointer-events-none' : 'pointer-events-auto',
       )}
     >
-      <span
-        data-intro-item
-        className="font-mono text-[11px] tracking-[0.3em] text-foreground/55 uppercase"
-      >
-        {t('label')}
-      </span>
-
+      
       <h1 data-intro-item className="max-w-2xl text-3xl leading-tight text-balance sm:text-5xl">
         {t('title')}
       </h1>
