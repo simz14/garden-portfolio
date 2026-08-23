@@ -25,7 +25,7 @@ export function ProjectsPanel() {
     >
       <header className="flex shrink-0 items-start justify-between gap-4 border-b border-white/50 px-5 py-4">
         <div className="flex flex-col gap-1">
-          <span className="font-mono text-[10px] tracking-[0.28em] text-black/50 uppercase">
+          <span className="text-[10px] tracking-[0.28em] text-black/50 uppercase">
             {t('zones.projects.name')}
           </span>
           <p className="text-base leading-tight text-black">{t('zones.projects.title')}</p>
@@ -35,7 +35,7 @@ export function ProjectsPanel() {
 
           type="button"
           onClick={() => selectHotspot(null)}
-          className="cursor-pointer shrink-0 rounded-sm border border-black/20 px-2 py-0.5 font-mono text-xs text-black/70 transition-colors hover:border-black hover:text-black"
+          className="cursor-pointer shrink-0 rounded-sm border border-black/20 px-2 py-0.5 text-xs text-black/70 transition-colors hover:border-black hover:text-black"
         >
           {t('close')}
         </button>

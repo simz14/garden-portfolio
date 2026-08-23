@@ -15,7 +15,7 @@ export function LocaleSwitcher() {
           aria-current={option === locale}
           onClick={() => setLocale(option as Locale)}
           className={cn(
-            'cursor-pointer px-1 py-1 font-mono text-sm uppercase transition-opacity',
+            'cursor-pointer px-1 py-1 text-sm uppercase font-elsie transition-opacity',
             option === locale ? 'font-bold' : 'opacity-60 hover:opacity-100',
           )}
         >

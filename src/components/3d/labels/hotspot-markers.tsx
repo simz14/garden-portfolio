@@ -64,7 +64,7 @@ export function HotspotMarkers() {
             >
               <span
                 className={cn(
-                  'flex items-center gap-2 rounded-full px-3 py-1.5 font-mono text-[10px] tracking-[0.18em] whitespace-nowrap uppercase backdrop-blur-md transition-colors duration-300',
+                  'flex items-center gap-2 rounded-full px-3 py-1.5 font-elsie text-[11px] tracking-[0.18em] whitespace-nowrap backdrop-blur-md transition-colors duration-300',
                   'shadow-[0_8px_24px_-16px_rgba(0,0,0,0.6)] ring-1 ring-inset',
                   isActive
                     ? 'bg-accent/70 text-black/85 ring-white/50'

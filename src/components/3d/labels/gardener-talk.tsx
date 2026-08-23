@@ -146,7 +146,7 @@ export function GardenerTalk() {
 
                 type="button"
                 onClick={() => setIsPinned(true)}
-                className="cursor-pointer animate-pop rounded-full bg-foreground/85 px-3 py-1 font-mono text-[10px] tracking-[0.14em] text-background uppercase transition-colors hover:bg-foreground"
+                className="cursor-pointer animate-pop rounded-full bg-foreground/85 px-3 py-1 text-[10px] tracking-[0.14em] text-background transition-colors hover:bg-foreground"
               >
                 {t('about.follow')}
               </button>

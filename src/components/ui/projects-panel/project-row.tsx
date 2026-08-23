@@ -30,13 +30,13 @@ export function ProjectRow({ project, dotColor }: { project: Project, dotColor: 
         <p className="text-base font-medium text-black">{title}</p>
 
         {project.isPersonal && (
-          <span className="rounded-xs bg-black/10 px-1.5 py-0.5 font-mono text-[9px] tracking-[0.16em] text-black/50 uppercase">
+          <span className="rounded-xs bg-black/10 px-1.5 py-0.5 text-[9px] tracking-[0.16em] text-black/50">
             {t('projects.personal')}
           </span>
         )}
       </div>
 
-      <p className="text-sm leading-relaxed text-black/65">{description}</p>
+      <p className="text-sm leading-relaxed text-black/65 font-sans">{description}</p>
 
       <ul className="flex flex-wrap gap-1">
         {project.technologies.map((tool) => (
@@ -58,7 +58,7 @@ export function ProjectRow({ project, dotColor }: { project: Project, dotColor: 
               rel="noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-black/85 px-3 py-1.5 tracking-[0.12em] text-white uppercase transition-colors hover:bg-accent hover:text-black"
             >
-              {t('projects.live')}
+              {t('\.live')}
               <span aria-hidden>↗</span>
               <span className="sr-only"> - {title}</span>
             </a>

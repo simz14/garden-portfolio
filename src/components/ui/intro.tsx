@@ -64,7 +64,7 @@ export function Intro() {
         onClick={enterGarden}
         tabIndex={hasEntered ? -1 : 0}
         className={cn(
-          'mt-4 cursor-pointer rounded-full bg-foreground px-6 py-3 font-mono text-[11px]',
+          'mt-4 cursor-pointer rounded-full bg-foreground px-6 py-3 text-[11px]',
           'tracking-[0.18em] text-background uppercase transition-colors hover:bg-foreground/85',
         )}
       >

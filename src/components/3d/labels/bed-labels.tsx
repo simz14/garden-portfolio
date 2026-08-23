@@ -42,7 +42,7 @@ export function BedLabels() {
             <span
               style={{ transform: 'translate(-50%, -100%)' }}
               className={cn(
-                'block rounded-full bg-white/20 px-2.5 py-1 font-mono text-[10px] tracking-[0.14em] whitespace-nowrap text-black/60 uppercase ring-1 ring-white/35 ring-inset backdrop-blur-md transition-opacity duration-500',
+                'block rounded-full bg-white/20 px-2.5 py-1 text-[10px] tracking-[0.14em] whitespace-nowrap text-black/60 ring-1 ring-white/35 ring-inset backdrop-blur-md transition-opacity duration-500 font-elsie',
                 isOpen ? 'opacity-100' : 'opacity-0',
               )}
             >

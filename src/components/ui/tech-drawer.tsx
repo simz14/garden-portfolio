@@ -40,7 +40,7 @@ export function TechDrawer() {
         <button
           type="button"
           onClick={() => selectHotspot(null)}
-          className="cursor-pointer shrink-0 rounded-sm border border-black/20 px-2 py-0.5 font-mono text-xs text-black/70 transition-colors hover:border-black hover:text-black"
+          className="cursor-pointer shrink-0 rounded-sm border border-black/20 px-2 py-0.5 text-xs text-black/70 transition-colors hover:border-black hover:text-black"
         >
           {t('close')}
         </button>

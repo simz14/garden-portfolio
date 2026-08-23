@@ -22,7 +22,7 @@ export function DebugToggle() {
     >
       <span
         className={cn(
-          'font-mono text-[10px] tracking-[0.18em] uppercase transition-colors',
+          'text-[10px] tracking-[0.18em] uppercase transition-colors font-elsie',
           isPanelVisible ? 'text-foreground' : 'text-foreground/40',
         )}
       >
