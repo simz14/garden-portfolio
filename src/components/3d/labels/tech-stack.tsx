@@ -25,11 +25,12 @@ export function TechStack() {
       projected.setFromMatrixPosition(el.matrixWorld).project(camera)
 
       const halfWidth = size.width / 2
-      const halfHeight = size.height / 2
+      const halfHeight = size.height / 1.5
       const x = projected.x * halfWidth + halfWidth
       const y = -(projected.y * halfHeight) + halfHeight
 
       const listWidth = listRef.current?.offsetWidth ?? 0
+      const listHeight = listRef.current?.offsetHeight ?? 0
 
       if (!listWidth) {
         return [x, y]
@@ -38,7 +39,10 @@ export function TechStack() {
       const padding = techConfig.pinnedPadding
       const furthest = Math.max(padding, size.width - listWidth - padding)
 
-      return [MathUtils.clamp(x, padding, furthest), y]
+      const highest = padding + listHeight / 2
+      const lowest = Math.max(highest, size.height - padding - listHeight / 2)
+
+      return [MathUtils.clamp(x, padding, furthest), MathUtils.clamp(y, highest, lowest)]
     },
     [],
   )
@@ -65,8 +69,8 @@ export function TechStack() {
           <TechBadge key={brand.name} brand={brand} index={index} isOpen={isOpen} isLead />
         ))}
 
-        <li className="mt-1 max-w-[62vw] sm:max-w-64">
-          <ul className="flex flex-wrap gap-1">
+        <li className="mt-1 max-w-[62vw] sm:max-w-96 lg:max-w-[28rem]">
+          <ul className="flex flex-wrap gap-1.5">
             {techList.slice(techConfig.primaryCount).map((brand, index) => (
               <TechBadge
                 key={brand.name}
